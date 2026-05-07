@@ -1,23 +1,109 @@
 <!DOCTYPE html>
-<html lang="en
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fxstreetcode | Professional Algo Trading</title>
+    <title>FX STREET CODE | Advanced Algo Trading</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        body { font-family: 'Segoe UI', sans-serif; background: #0f172a; color: white; text-align: center; padding: 80px 20px; }
-        .container { border: 1px solid #1e293b; padding: 40px; border-radius: 20px; background: #1e293b; display: inline-block; }
-        h1 { color: #38bdf8; margin-bottom: 10px; }
-        .status { background: #38bdf8; color: #0f172a; padding: 4px 12px; border-radius: 50px; font-size: 12px; font-weight: bold; }
-        p { color: #94a3b8; line-height: 1.6; }
+        :root { --primary: #38bdf8; --bg: #0f172a; --card-bg: #1e293b; --accent: #ec4899; }
+        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; line-height: 1.6; }
+        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15, 23, 42, 0.9); position: sticky; top: 0; z-index: 1000; }
+        .logo { font-weight: bold; font-size: 1.5rem; color: var(--primary); }
+        .nav-links a { color: #94a3b8; text-decoration: none; margin: 0 15px; font-size: 0.9rem; }
+        .btn-start { border: 1px solid var(--primary); color: var(--primary); padding: 8px 18px; border-radius: 8px; text-decoration: none; font-weight: bold; font-size: 0.9rem; }
+        
+        .hero { text-align: center; padding: 80px 20px; background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%); }
+        .hero h1 { font-size: 2.8rem; margin: 0; }
+        .hero span { color: var(--primary); }
+        
+        .dashboard-preview { background: var(--card-bg); max-width: 500px; margin: -50px auto 50px; border-radius: 20px; padding: 25px; border: 1px solid #334155; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); }
+        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left; }
+        .stat-val { font-size: 1.4rem; font-weight: bold; color: #22c55e; }
+        
+        .section-title { text-align: center; font-size: 1.8rem; margin: 60px 0 30px; }
+        .pricing-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 20px; padding: 0 10px; }
+        .plan-card { background: var(--card-bg); border: 1px solid #334155; padding: 30px; border-radius: 20px; width: 280px; text-align: center; }
+        .plan-card.popular { border-color: var(--primary); }
+        .plan-card h3 { color: var(--primary); margin-top: 0; font-size: 1.2rem; }
+        .price { font-size: 2.2rem; font-weight: bold; margin: 10px 0; }
+        .features-list { list-style: none; padding: 0; text-align: left; font-size: 0.85rem; }
+        .features-list li { margin: 10px 0; display: flex; align-items: center; }
+        .features-list li i { color: #22c55e; margin-right: 10px; }
+
+        .footer { background: #020617; padding: 40px 20px; text-align: center; margin-top: 80px; border-top: 1px solid #1e293b; }
+        .footer-logo { color: var(--primary); font-weight: bold; font-size: 1.2rem; margin-bottom: 10px; }
+        .footer p { color: #64748b; font-size: 0.85rem; margin: 5px 0; }
     </style>
 </head>
 <body>
-    <div class="container">
-        <span class="status">LAUNCHING SOON</span>
-        <h1>Fxstreetcode</h1>
-        <p>Advanced Algorithm Software for Forex & Commodities.<br>Reliable trading solutions for XAUUSD and Major pairs.</p>
+
+    <nav>
+        <div class="logo">FX STREET CODE</div>
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#">Services</a>
+        </div>
+        <a href="mailto:support@fxstreetcode.com" class="btn-start">Email Support</a>
+    </nav>
+
+    <section class="hero">
+        <h1>Automated Trading.<br><span>Real Time Control.</span></h1>
+        <p style="color: #94a3b8; max-width: 550px; margin: 20px auto; font-size: 0.95rem;">Broker-agnostic algorithmic solutions designed to maximize efficiency and maintain discipline in trading.</p>
+    </section>
+
+    <div class="dashboard-preview">
+        <h4 style="margin: 0 0 15px 0; color: #94a3b8; font-size: 0.9rem;">Algorithm Performance</h4>
+        <div class="stat-grid">
+            <div>Daily Target<br><span class="stat-val">Achieved</span></div>
+            <div>Avg Accuracy<br><span class="stat-val" style="color: var(--primary);">88%</span></div>
+        </div>
+        <div style="background: #334155; height: 6px; border-radius: 10px; margin-top: 15px;">
+            <div style="background: var(--primary); width: 88%; height: 100%; border-radius: 10px;"></div>
+        </div>
     </div>
+
+    <h2 class="section-title">Subscription Plans</h2>
+    <div class="pricing-grid">
+        <div class="plan-card">
+            <h3>BASIC</h3>
+            <div class="price">$200</div>
+            <p style="font-size: 0.8rem; color: #94a3b8;">Trial Access</p>
+            <ul class="features-list">
+                <li><i class="fa-solid fa-check"></i> XAU/USD Specialization</li>
+                <li><i class="fa-solid fa-check"></i> 80% Success Strategy</li>
+                <li><i class="fa-solid fa-check"></i> Real-time Execution</li>
+            </ul>
+        </div>
+
+        <div class="plan-card popular">
+            <h3>PREMIUM</h3>
+            <div class="price">$500</div>
+            <p style="font-size: 0.8rem; color: #94a3b8;">Standard Choice</p>
+            <ul class="features-list">
+                <li><i class="fa-solid fa-check"></i> Gold + Major FX Pairs</li>
+                <li><i class="fa-solid fa-check"></i> High Accuracy Bot</li>
+                <li><i class="fa-solid fa-check"></i> Priority Email Support</li>
+            </ul>
+        </div>
+
+        <div class="plan-card">
+            <h3>INSTITUTIONAL</h3>
+            <div class="price">$2000</div>
+            <p style="font-size: 0.8rem; color: #94a3b8;">Full Suite</p>
+            <ul class="features-list">
+                <li><i class="fa-solid fa-check"></i> All Asset Classes</li>
+                <li><i class="fa-solid fa-check"></i> Lifetime Algorithm Updates</li>
+                <li><i class="fa-solid fa-check"></i> Advanced Risk Manager</li>
+            </ul>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-logo">FX STREET CODE</div>
+        <p>Contact: support@fxstreetcode.com</p>
+        <p style="font-size: 0.7rem; margin-top: 20px;">Trading involves significant risk. Past results do not guarantee future performance.</p>
+    </footer>
+
 </body>
 </html>
-
