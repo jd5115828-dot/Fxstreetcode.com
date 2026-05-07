@@ -3,118 +3,174 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>FX STREET CODE | Advanced Algo Trading</title>
+    <title>Fxstreetcode | Premium Trading Solutions</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --primary: #38bdf8; --bg: #0f172a; --card-bg: #1e293b; --accent: #ec4899; }
-        body { font-family: 'Segoe UI', sans-serif; background: var(--bg); color: white; margin: 0; line-height: 1.6; }
-        nav { display: flex; justify-content: space-between; align-items: center; padding: 15px 5%; background: rgba(15, 23, 42, 0.9); position: sticky; top: 0; z-index: 1000; }
-        .logo { font-weight: bold; font-size: 1.5rem; color: var(--primary); }
-        .nav-links a { color: #94a3b8; text-decoration: none; margin: 0 15px; font-size: 0.9rem; }
-        .btn-start { background: #6366f1; color: white; padding: 10px 20px; border-radius: 8px; text-decoration: none; font-weight: bold; }
-        
-        .hero { text-align: center; padding: 80px 20px; background: radial-gradient(circle at top, #1e293b 0%, #0f172a 100%); }
-        .hero h1 { font-size: 3rem; margin: 0; }
-        .hero span { color: var(--primary); }
-        
-        .dashboard-preview { background: var(--card-bg); max-width: 600px; margin: -50px auto 50px; border-radius: 20px; padding: 25px; border: 1px solid #334155; box-shadow: 0 20px 25px -5px rgba(0,0,0,0.5); }
-        .stat-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 15px; text-align: left; }
-        .stat-val { font-size: 1.5rem; font-weight: bold; color: #22c55e; }
-        
-        .section-title { text-align: center; font-size: 2rem; margin-bottom: 40px; }
-        .pricing-grid { display: flex; flex-wrap: wrap; justify-content: center; gap: 25px; padding: 0 20px; }
-        .plan-card { background: var(--card-bg); border: 1px solid #334155; padding: 30px; border-radius: 20px; width: 300px; position: relative; }
-        .plan-card.popular { border-color: var(--primary); transform: scale(1.05); }
-        .plan-card h3 { color: var(--primary); margin-top: 0; }
-        .price { font-size: 2.5rem; font-weight: bold; margin: 15px 0; }
-        .features-list { list-style: none; padding: 0; text-align: left; font-size: 0.9rem; }
-        .features-list li { margin: 12px 0; display: flex; align-items: center; }
-        .features-list li i { color: #22c55e; margin-right: 10px; }
+        :root { 
+            --gold: #d4af37; 
+            --premium-bg: #050a14; 
+            --card-bg: #0c1425; 
+            --text-gray: #94a3b8;
+            --glass: rgba(255, 255, 255, 0.03);
+        }
+        body { 
+            font-family: 'Poppins', sans-serif; 
+            background: var(--premium-bg); 
+            color: white; 
+            margin: 0; 
+            line-height: 1.6;
+        }
+        nav { 
+            display: flex; 
+            justify-content: center; 
+            padding: 20px; 
+            background: rgba(5, 10, 20, 0.95); 
+            border-bottom: 1px solid var(--glass);
+        }
+        .logo { font-weight: bold; font-size: 1.6rem; color: var(--gold); letter-spacing: 2px; }
 
-        .footer { background: #020617; padding: 50px 20px; text-align: center; margin-top: 80px; border-top: 1px solid #1e293b; }
-        .whatsapp-float { position: fixed; bottom: 20px; right: 20px; background: #25d366; width: 60px; height: 60px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-size: 30px; color: white; box-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
+        .hero { 
+            text-align: center; 
+            padding: 100px 20px; 
+            background: radial-gradient(circle at center, #101a30 0%, var(--premium-bg) 100%); 
+        }
+        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
+        .hero p { color: var(--text-gray); max-width: 700px; margin: 0 auto; font-size: 1.1rem; }
+
+        .pricing-grid { 
+            display: flex; 
+            flex-wrap: wrap; 
+            justify-content: center; 
+            gap: 30px; 
+            padding: 50px 20px; 
+        }
+        .plan-card { 
+            background: var(--card-bg); 
+            border: 1px solid var(--glass); 
+            padding: 40px 30px; 
+            border-radius: 24px; 
+            width: 320px; 
+            text-align: center; 
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        .plan-card:hover { 
+            transform: translateY(-10px); 
+            border-color: var(--gold);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
+        }
+        .plan-card h3 { font-size: 1.4rem; margin-bottom: 5px; color: var(--gold); }
+        .investment { font-size: 2.5rem; font-weight: bold; margin: 20px 0; border-bottom: 1px solid var(--glass); padding-bottom: 20px; }
+        
+        .features-list { list-style: none; padding: 0; text-align: left; margin: 25px 0; }
+        .features-list li { margin: 12px 0; font-size: 0.9rem; display: flex; align-items: center; }
+        .features-list li i { color: var(--gold); margin-right: 12px; width: 20px; }
+
+        .core-features { 
+            background: var(--glass); 
+            padding: 60px 20px; 
+            text-align: center; 
+            margin-top: 50px;
+        }
+        .core-grid { 
+            display: grid; 
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
+            max-width: 1000px; 
+            margin: 40px auto 0; 
+            gap: 20px; 
+        }
+        .core-item { padding: 20px; background: var(--card-bg); border-radius: 15px; border: 1px solid var(--glass); }
+        .core-item i { font-size: 2rem; color: var(--gold); margin-bottom: 15px; }
+
+        .footer { padding: 40px; text-align: center; color: var(--text-gray); border-top: 1px solid var(--glass); }
+        .btn-cta { 
+            background: var(--gold); 
+            color: black; 
+            padding: 12px 30px; 
+            border-radius: 50px; 
+            text-decoration: none; 
+            font-weight: bold; 
+            display: inline-block; 
+            margin-top: 20px;
+            transition: 0.3s;
+        }
+        .btn-cta:hover { opacity: 0.9; transform: scale(1.05); }
     </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">FX STREET CODE</div>
-        <div class="nav-links">
-            <a href="#">Home</a>
-            <a href="#">Services</a>
-            <a href="#">Pricing</a>
-            <a href="#">Results</a>
-        </div>
-        <a href="#" class="btn-start">Start Demo</a>
-    </nav>
+    <nav><div class="logo">🚀 FXSTREETCODE</div></nav>
 
     <section class="hero">
-        <h1>Automated Trading.<br><span>Real Time Control.</span></h1>
-        <p style="color: #94a3b8; max-width: 600px; margin: 20px auto;">Empowering traders with broker-agnostic algorithmic solutions that maximize profits and minimize risks.</p>
+        <h1>Premium Trading Solutions</h1>
+        <p>Elevate your trading game with our precision-engineered algorithmic strategies. Designed for consistency, managed with expertise.</p>
     </section>
 
-    <div class="dashboard-preview">
-        <h4 style="margin: 0 0 15px 0; color: #94a3b8;">Live Trading Dashboard</h4>
-        <div class="stat-grid">
-            <div>Today's Profit<br><span class="stat-val">+$2,450</span></div>
-            <div>Win Rate<br><span class="stat-val" style="color: var(--primary);">87%</span></div>
-        </div>
-        <div style="background: #334155; height: 8px; border-radius: 10px; margin-top: 15px;">
-            <div style="background: var(--primary); width: 87%; height: 100%; border-radius: 10px;"></div>
-        </div>
-    </div>
-
-    <h2 class="section-title">Choose Your Plan</h2>
     <div class="pricing-grid">
         <div class="plan-card">
-            <h3>BASIC PLAN</h3>
-            <div class="price">$200</div>
-            <p>3 Months Access</p>
+            <h3>🔹 BASIC PLAN</h3>
+            <div class="investment">$300</div>
             <ul class="features-list">
-                <li><i class="fa-solid fa-check"></i> Accuracy: 75% - 85%</li>
-                <li><i class="fa-solid fa-check"></i> XAU/USD (Gold) Only</li>
-                <li><i class="fa-solid fa-check"></i> 2 Months Validity</li>
-                <li><i class="fa-solid fa-check"></i> Live Profit Updates</li>
+                <li><i class="fas fa-chart-line"></i> 5% – 10% Daily Profit</li>
+                <li><i class="fas fa-bullseye"></i> 80% – 90% Accuracy</li>
+                <li><i class="fas fa-coins"></i> Gold & Major USD Pairs</li>
+                <li><i class="fas fa-calendar-alt"></i> 4 Months Access</li>
             </ul>
+            <a href="mailto:support@fxstreetcode.com" class="btn-cta">Start Journey</a>
         </div>
 
-        <div class="plan-card popular">
-            <div style="position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--primary); color: #0f172a; padding: 2px 15px; border-radius: 20px; font-weight: bold; font-size: 0.7rem;">MOST POPULAR</div>
-            <h3>PREMIUM PLAN</h3>
-            <div class="price">$500</div>
-            <p>1/2 Year Access</p>
+        <div class="plan-card" style="border-color: rgba(212, 175, 55, 0.5);">
+            <h3>🔸 MID-TIER PLAN</h3>
+            <div class="investment">$700</div>
             <ul class="features-list">
-                <li><i class="fa-solid fa-check"></i> Accuracy: 80% - 90%</li>
-                <li><i class="fa-solid fa-check"></i> Gold + Major Forex Pairs</li>
-                <li><i class="fa-solid fa-check"></i> Priority Support</li>
-                <li><i class="fa-solid fa-check"></i> Performance Review</li>
+                <li><i class="fas fa-rocket"></i> 10% – 15% Daily Profit</li>
+                <li><i class="fas fa-fire"></i> 85% – 95% Accuracy</li>
+                <li><i class="fas fa-bitcoin"></i> Gold, BTC & Forex</li>
+                <li><i class="fas fa-calendar-check"></i> 8 Months Access</li>
             </ul>
+            <a href="mailto:support@fxstreetcode.com" class="btn-cta" style="background: white;">Join Elite</a>
         </div>
 
-        <div class="plan-card">
-            <h3>HIGH PREMIUM</h3>
-            <div class="price">$2000</div>
-            <p>5 Years Access</p>
+        <div class="plan-card" style="background: linear-gradient(145deg, #0c1425 0%, #16223b 100%); border-color: var(--gold);">
+            <h3>👑 PLATINUM VIP</h3>
+            <div class="investment">$2000</div>
             <ul class="features-list">
-                <li><i class="fa-solid fa-check"></i> Accuracy: 85% - 95%</li>
-                <li><i class="fa-solid fa-check"></i> Forex + Gold + Crypto</li>
-                <li><i class="fa-solid fa-check"></i> Dedicated Manager</li>
-                <li><i class="fa-solid fa-check"></i> Lifetime Access</li>
+                <li><i class="fas fa-money-bill-wave"></i> 15% – 20% Daily Profit</li>
+                <li><i class="fas fa-bolt"></i> 95%+ Precision</li>
+                <li><i class="fas fa-globe"></i> All Segments (Indices, Crypto)</li>
+                <li><i class="fas fa-infinity"></i> 1 Year Full Access</li>
             </ul>
+            <a href="mailto:support@fxstreetcode.com" class="btn-cta">Get VIP Access</a>
         </div>
     </div>
 
-    <footer class="footer">
-        <div class="logo" style="margin-bottom: 20px;">FX STREET CODE</div>
-        <p>Dubai, United Arab Emirates | support@fxstreetcode.com</p>
-        <p style="font-size: 0.7rem; color: #64748b;">Risk Warning: Trading involves risk. Past performance is not a guarantee of future results.</p>
-    </footer>
+    <section class="core-features">
+        <h2>🛠 CORE FEATURES</h2>
+        <div class="core-grid">
+            <div class="core-item">
+                <i class="fas fa-robot"></i>
+                <p>Fully Automated Execution</p>
+            </div>
+            <div class="core-item">
+                <i class="fas fa-shield-alt"></i>
+                <p>Advanced Risk Management</p>
+            </div>
+            <div class="core-item">
+                <i class="fas fa-headset"></i>
+                <p>24/7 Priority Support</p>
+            </div>
+            <div class="core-item">
+                <i class="fas fa-brain"></i>
+                <p>Momentum Analysis</p>
+            </div>
+        </div>
+    </section>
 
-    <a href="https://wa.me/919922502488" class="whatsapp-float">
-        <i class="fa-brands fa-whatsapp"></i>
-    </a>
+    <footer class="footer">
+        <p>📉 Profitable | Secure | User-Friendly</p>
+        <p>© 2026 Fxstreetcode. Start your journey today with just $300.</p>
+    </footer>
 
 </body>
 </html>
-
-
