@@ -1,0 +1,12 @@
+fxstreetcode.com
+index.htm1
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Fxstreetcode</title>
+</head>
+<body>
+    <h1>Welcome to Fxstreetcode</h1>
+    <p>Trading software and services coming soon!</p>
+</body>
+</html>
