@@ -4,7 +4,6 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Fxstreetcode | Institutional Neural OS</title>
-    
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r134/three.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/vanta@latest/dist/vanta.globe.min.js"></script>
@@ -17,41 +16,28 @@
         :root { --gold: #C5A059; --bg: #010409; }
         body { background: var(--bg); color: white; font-family: 'Outfit', sans-serif; overflow-x: hidden; margin: 0; }
         
-        /* Premium Loader */
-        #loader {
-            position: fixed; inset: 0; z-index: 10000; background: #000;
-            display: flex; flex-direction: column; align-items: center; justify-content: center;
-        }
-        .terminal-text { font-family: 'Space Grotesk'; font-size: 11px; letter-spacing: 4px; color: var(--gold); }
+        #loader { position: fixed; inset: 0; z-index: 10000; background: #000; display: flex; flex-direction: column; align-items: center; justify-content: center; }
+        .terminal-text { font-family: 'Space Grotesk'; font-size: 11px; letter-spacing: 4px; color: var(--gold); text-transform: uppercase; }
+        
+        #vanta-canvas { position: fixed; inset: 0; z-index: -1; opacity: 0.35; }
+        #cursor-glow { position: fixed; width: 500px; height: 500px; background: radial-gradient(circle, rgba(197, 160, 89, 0.08) 0%, transparent 70%); border-radius: 50%; pointer-events: none; z-index: 1; transform: translate(-50%, -50%); }
 
-        /* 3D Vanta Background */
-        #vanta-canvas { position: fixed; inset: 0; z-index: -1; opacity: 0.4; }
-
-        /* Mouse Glow Cursor */
-        #cursor-glow {
-            position: fixed; width: 500px; height: 500px;
-            background: radial-gradient(circle, rgba(197, 160, 89, 0.07) 0%, transparent 70%);
-            border-radius: 50%; pointer-events: none; z-index: 1; transform: translate(-50%, -50%);
-        }
-
-        .premium-glass {
-            background: rgba(255, 255, 255, 0.01); backdrop-filter: blur(25px);
-            border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-        }
+        .premium-glass { background: rgba(255, 255, 255, 0.01); backdrop-filter: blur(25px); border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.5s ease; }
         .premium-glass:hover { border-color: var(--gold); background: rgba(255, 255, 255, 0.03); }
         .gold-text { background: linear-gradient(to right, #F5E3C6, #C5A059, #8A6D3B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
         .tab-content { display: none; }
-        .tab-content.active { display: block; }
+        .tab-content.active { display: block; animation: fadeInUp 0.8s ease; }
+        @keyframes fadeInUp { from { opacity: 0; transform: translateY(30px); } to { opacity: 1; transform: translateY(0); } }
         
-        /* Mobile Scaling */
-        @media (max-width: 768px) { .hero-title { font-size: 3.5rem !important; } }
+        .btn-master { background: var(--gold); color: black; font-weight: 900; padding: 1rem 2.5rem; border-radius: 99px; text-transform: uppercase; font-size: 10px; tracking: 2px; border: none; cursor: pointer; transition: 0.4s; }
+        .btn-master:hover { transform: scale(1.05); box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
     </style>
 </head>
 <body>
     <div id="loader">
         <div class="terminal-text mb-4" id="loader-status">INITIALIZING NEURAL GRID...</div>
-        <div class="w-64 h-[1px] bg-white/10 overflow-hidden"><div id="loader-bar" class="w-0 h-full bg-gold transition-all duration-500"></div></div>
+        <div class="w-64 h-[1px] bg-white/10"><div id="loader-bar" class="w-0 h-full bg-gold transition-all duration-700"></div></div>
     </div>
     
     <div id="vanta-canvas"></div>
@@ -59,145 +45,119 @@
 
     <nav class="fixed w-full z-[100] px-6 py-5 premium-glass border-b border-white/5 flex justify-between items-center">
         <div class="text-2xl font-black gold-text tracking-tighter">FXSTREETCODE</div>
-        <div class="hidden lg:flex space-x-10 text-[9px] font-bold tracking-[0.4em] uppercase text-gray-500">
-            <button onclick="showTab('home')">Overview</button>
-            <button onclick="showTab('dashboard')">Terminal</button>
-            <button onclick="showTab('signals')">Signals</button>
-            <button onclick="showTab('infra')">Infrastructure</button>
+        <div class="hidden lg:flex space-x-8 text-[9px] font-bold tracking-[0.3em] uppercase text-gray-500">
+            <button onclick="showTab('home')" class="hover:text-white transition">Home</button>
+            <button onclick="showTab('terminal')" class="hover:text-white transition">Terminal</button>
+            <button onclick="showTab('calculator')" class="hover:text-white transition">Analytics</button>
+            <button onclick="showTab('infra')" class="hover:text-white transition">About</button>
         </div>
-        <button onclick="showTab('dashboard')" class="bg-[#C5A059] text-black px-8 py-2 rounded-full text-[10px] font-black uppercase">Launch App</button>
+        <button onclick="showTab('terminal')" class="btn-master py-2 px-6">Access OS</button>
     </nav>
-
-    <div id="home" class="tab-content active pt-44 px-6 min-h-screen">
-        <div class="max-w-6xl mx-auto text-center">
-            <div class="inline-block px-4 py-1 rounded-full border border-gold/30 text-gold text-[9px] font-bold tracking-widest mb-8 uppercase">HFT Neural Engine v4.2</div>
-            <h1 class="hero-title text-7xl md:text-[11rem] font-black uppercase leading-none mb-10">Quant <br><span class="gold-text italic">Sovereign.</span></h1>
-            <p class="text-gray-400 text-xl max-w-2xl mx-auto mb-16 font-light">Direct NY4 liquidity cross-connects. Institutional execution for private capital.</p>
-            <div class="flex flex-wrap justify-center gap-6">
-                <button onclick="showTab('dashboard')" class="bg-white text-black px-12 py-5 rounded-full font-black text-xs uppercase tracking-widest">Connect Identity</button>
-                <button class="px-12 py-5 rounded-full border border-white/10 text-xs font-bold uppercase tracking-widest hover:bg-white/5">View Audit</button>
+        <div id="home" class="tab-content active pt-32 px-6">
+        <div class="max-w-7xl mx-auto grid lg:grid-cols-2 gap-16 items-center min-h-[80vh]">
+            <div class="space-y-8">
+                <div class="inline-block px-4 py-1 rounded-full border border-gold/30 text-gold text-[9px] font-bold tracking-widest uppercase">HFT Neural v4.2 Active</div>
+                <h1 class="text-7xl lg:text-9xl font-black uppercase leading-none">Scale <br><span class="gold-text italic">Smarter.</span></h1>
+                <p class="text-gray-400 text-lg max-w-md font-light leading-relaxed">Institutional liquidity and sub-millisecond execution for XAUUSD, BTC, and Major FX pairs.</p>
+                <div class="flex gap-4">
+                    <button onclick="showTab('terminal')" class="btn-master">View Signals</button>
+                    <a href="https://wa.me/919922502488" class="px-10 py-4 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest">Connect Support</a>
+                </div>
+            </div>
+            <div class="premium-glass p-4 rounded-[2.5rem] shadow-2xl">
+                <iframe src="https://s.tradingview.com/widgetembed/?symbol=FX%3AXAUUSD&theme=dark" width="100%" height="480px" frameborder="0"></iframe>
             </div>
         </div>
-    </div>
-        <div id="dashboard" class="tab-content pt-32 px-6">
+        </div>
+            <div id="terminal" class="tab-content pt-32 px-6 pb-20">
         <div class="max-w-7xl mx-auto">
-            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-10">
-                <div class="premium-glass p-8 rounded-[2.5rem]">
-                    <p class="text-[9px] text-gray-500 uppercase mb-2">Portfolio Equity</p>
-                    <h3 class="text-4xl font-black gold-text">$142,670.40</h3>
-                    <p class="text-[10px] text-green-500 mt-2">+12.4% THIS MONTH</p>
-                </div>
-                <div class="premium-glass p-8 rounded-[2.5rem]">
-                    <p class="text-[9px] text-gray-500 uppercase mb-2">AI Win Rate</p>
-                    <h3 class="text-4xl font-black italic">94.2%</h3>
-                    <p class="text-[10px] text-gray-500 mt-2">LAST 500 TRADES</p>
-                </div>
-                <div class="premium-glass p-8 rounded-[2.5rem]">
-                    <p class="text-[9px] text-gray-500 uppercase mb-2">Sharpe Ratio</p>
-                    <h3 class="text-4xl font-black">4.21</h3>
-                    <p class="text-[10px] text-gold mt-2">INSTITUTIONAL GRADE</p>
-                </div>
-                <div class="premium-glass p-8 rounded-[2.5rem] border-gold/40">
-                    <p class="text-[9px] text-gold uppercase mb-2">Bot Status</p>
-                    <h3 class="text-4xl font-black text-green-400">ACTIVE</h3>
-                    <p class="text-[10px] text-gray-500 mt-2">CONNECTED TO NY4</p>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+                <div class="premium-glass p-8 rounded-[2rem] text-center"><p class="text-[9px] text-gray-500 uppercase mb-2">Equity Growth</p><h3 class="text-3xl font-black gold-text">142,670</h3></div>
+                <div class="premium-glass p-8 rounded-[2rem] text-center border-gold/40"><p class="text-[9px] text-gold uppercase mb-2">AI Accuracy</p><h3 class="text-3xl font-black italic">94.2%</h3></div>
+                <div class="lg:col-span-2 premium-glass p-8 rounded-[2rem] flex justify-between items-center border-green-500/20 relative overflow-hidden">
+                    <div><span class="text-[10px] text-green-500 font-black uppercase tracking-widest">AI Pulse: BUY GOLD</span><p class="text-xs text-gray-500 mt-1">Entry: 2310.20 | TP: 2338.00</p></div>
+                    <div class="text-right"><p class="text-[9px] text-gray-500 uppercase">Confidence</p><h4 class="text-3xl font-black gold-text">97.4%</h4></div>
                 </div>
             </div>
 
-            <div class="grid lg:grid-cols-3 gap-8">
-                <div id="signals" class="space-y-6">
-                    <h2 class="text-xs font-black uppercase tracking-[0.4em] text-gold mb-6">Neural Signals</h2>
-                    <div class="premium-glass p-10 rounded-[3rem] border-green-500/20">
-                        <div class="flex justify-between items-start mb-6">
-                            <span class="text-[10px] font-black text-green-500 uppercase tracking-widest">Buy XAUUSD</span>
-                            <div class="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
-                        </div>
-                        <h4 class="text-6xl font-black mb-4">2311.50</h4>
-                        <div class="grid grid-cols-2 gap-4 text-[10px] font-bold text-gray-500 uppercase">
-                            <div>TP: 2338.00</div><div>SL: 2298.00</div>
-                        </div>
-                        <div class="mt-8 pt-8 border-t border-white/5 flex justify-between items-center">
-                            <span class="text-[9px] uppercase tracking-tighter">AI Confidence</span>
-                            <span class="text-2xl font-black gold-text">97.4%</span>
-                        </div>
-                    </div>
+            <h2 class="text-center text-4xl font-black gold-text uppercase mb-16">System Deployment</h2>
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="premium-glass p-12 rounded-[3rem] text-center">
+                    <h4 class="text-xs font-bold text-gray-600 mb-6 uppercase">Core</h4>
+                    <h3 class="text-6xl font-black mb-8">$300</h3>
+                    <ul class="text-[10px] text-gray-500 space-y-4 mb-10 uppercase tracking-widest"><li>90% Win Rate</li><li>4 Months Validity</li><li>Support Included</li></ul>
+                    <button class="w-full btn-master">Access Core</button>
                 </div>
-
-                <div class="lg:col-span-2 premium-glass p-10 rounded-[3.5rem]">
-                    <h2 class="text-xs font-black uppercase tracking-[0.4em] text-gray-500 mb-10">Equity Curve Analytics</h2>
-                    <canvas id="equityChart" height="200"></canvas>
+                <div class="premium-glass p-12 rounded-[4rem] text-center border-gold bg-white/[0.02] scale-105 relative">
+                    <div class="absolute top-0 left-1/2 -translate-x-1/2 bg-gold text-black px-8 py-2 rounded-b-2xl font-black text-[9px] uppercase">Elite Tier</div>
+                    <h4 class="text-xs font-bold text-gold mb-6 uppercase">Elite</h4>
+                    <h3 class="text-6xl font-black mb-8 gold-text">$700</h3>
+                    <ul class="text-[10px] text-gray-300 space-y-4 mb-10 uppercase tracking-widest"><li>95% Win Rate</li><li>8 Months Validity</li><li>VIP Execution Grid</li></ul>
+                    <button class="w-full btn-master">Access Elite</button>
+                </div>
+                <div class="premium-glass p-12 rounded-[3rem] text-center">
+                    <h4 class="text-xs font-bold text-gray-600 mb-6 uppercase">VIP</h4>
+                    <h3 class="text-6xl font-black mb-8">$2000</h3>
+                    <ul class="text-[10px] text-gray-500 space-y-4 mb-10 uppercase tracking-widest"><li>98%+ Win Rate</li><li>12 Months Validity</li><li>Direct API Access</li></ul>
+                    <button class="w-full btn-master">Inquire VIP</button>
                 </div>
             </div>
         </div>
-        </div>
-            <div id="infra" class="tab-content pt-32 px-6">
-        <div class="max-w-4xl mx-auto text-center">
-            <h2 class="text-6xl font-black gold-text uppercase mb-10">Global Infrastructure</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 text-left">
-                <div class="premium-glass p-10 rounded-3xl">
-                    <h4 class="font-black text-gold mb-4 uppercase">NY4 - New York</h4>
-                    <p class="text-sm text-gray-500">Sub-1ms latency for XAUUSD and NAS100 execution.</p>
+            </div>
+                <div id="calculator" class="tab-content pt-32 px-6 pb-20">
+        <div class="max-w-4xl mx-auto premium-glass p-16 rounded-[4rem]">
+            <h2 class="text-4xl font-black gold-text uppercase mb-12">Performance Estimator</h2>
+            <div class="grid md:grid-cols-2 gap-12">
+                <div class="space-y-8">
+                    <div><label class="text-[10px] uppercase text-gray-500 tracking-widest">Capital Amount ($)</label><input type="number" id="capital" value="1000" class="w-full bg-transparent border-b border-white/10 p-5 focus:outline-none focus:border-gold font-black text-2xl"></div>
+                    <div><label class="text-[10px] uppercase text-gray-500 tracking-widest">Strategy Risk</label><select id="risk" class="w-full bg-transparent border-b border-white/10 p-5 focus:outline-none font-bold uppercase text-xs"><option value="0.10" class="bg-black">Low (10% Target)</option><option value="0.25" class="bg-black">Elite (25% Target)</option></select></div>
+                    <button onclick="calculate()" class="btn-master w-full py-5">Analyze Growth</button>
                 </div>
-                <div class="premium-glass p-10 rounded-3xl">
-                    <h4 class="font-black text-gold mb-4 uppercase">LD4 - London</h4>
-                    <p class="text-sm text-gray-500">Tier-1 liquidity access for all major Forex pairs.</p>
+                <div class="bg-white/5 rounded-3xl flex flex-col items-center justify-center p-10 text-center">
+                    <p class="text-[10px] text-gray-500 uppercase mb-4 tracking-[0.4em]">Projected Monthly ROI</p>
+                    <h4 class="text-7xl font-black gold-text" id="result">$100</h4>
                 </div>
             </div>
+            <div class="mt-16"><canvas id="growthChart"></canvas></div>
         </div>
     </div>
 
     <script>
-        // 1. Vanta 3D Globe Background
-        VANTA.GLOBE({
-            el: "#vanta-canvas",
-            mouseControls: true, touchControls: true, gyroControls: false,
-            minHeight: 200.00, minWidth: 200.00,
-            scale: 1.00, scaleMobile: 1.00,
-            color: 0xc5a059, backgroundColor: 0x10409,
-            size: 0.80
-        });
-
-        // 2. Premium Loader Sequence
-        const statusText = document.getElementById('loader-status');
-        const bar = document.getElementById('loader-bar');
-        const phases = ["INITIALIZING NEURAL GRID...", "SYNCING WITH NY4...", "ACCESS GRANTED"];
-        let phase = 0;
-        const interval = setInterval(() => {
-            statusText.innerText = phases[phase];
-            bar.style.width = (phase + 1) * 33 + "%";
-            phase++;
-            if(phase === phases.length) {
-                clearInterval(interval);
-                setTimeout(() => gsap.to("#loader", {opacity: 0, duration: 1, onComplete: () => document.getElementById('loader').style.display='none'}), 800);
+        VANTA.GLOBE({ el: "#vanta-canvas", mouseControls: true, touchControls: true, scale: 1.00, color: 0xc5a059, backgroundColor: 0x010409, size: 0.9 });
+        
+        const phases = ["NEURAL GRID INITIALIZING...", "SYNCING NY4 NODES...", "ACCESS GRANTED"];
+        let p = 0;
+        const load = setInterval(() => {
+            document.getElementById('loader-status').innerText = phases[p];
+            document.getElementById('loader-bar').style.width = (p + 1) * 33 + "%";
+            p++;
+            if(p === phases.length) {
+                clearInterval(load);
+                setTimeout(() => { gsap.to("#loader", {opacity: 0, onComplete: () => document.getElementById('loader').style.display='none'}); }, 800);
             }
-        }, 1000);
+        }, 800);
 
-        // 3. Mouse Glow Cursor
         const glow = document.getElementById('cursor-glow');
-        document.addEventListener('mousemove', (e) => {
-            gsap.to(glow, { duration: 0.5, left: e.clientX, top: e.clientY });
-        });
+        document.addEventListener('mousemove', (e) => { gsap.to(glow, { duration: 0.5, left: e.clientX, top: e.clientY }); });
 
-        // 4. Tab Management
         function showTab(id) {
             document.querySelectorAll('.tab-content').forEach(t => t.classList.remove('active'));
             document.getElementById(id).classList.add('active');
             window.scrollTo({top: 0, behavior: 'smooth'});
         }
 
-        // 5. Advanced Equity Chart
-        const ctx = document.getElementById('equityChart').getContext('2d');
+        function calculate() {
+            const cap = document.getElementById('capital').value;
+            const risk = document.getElementById('risk').value;
+            document.getElementById('result').innerText = "$" + (cap * risk);
+        }
+
+        const ctx = document.getElementById('growthChart').getContext('2d');
         new Chart(ctx, {
             type: 'line',
             data: {
-                labels: ['Week 1', 'Week 2', 'Week 3', 'Week 4', 'Week 5'],
-                datasets: [{
-                    label: 'ROI Growth',
-                    data: [100000, 115000, 108000, 132000, 142670],
-                    borderColor: '#C5A059',
-                    backgroundColor: 'rgba(197, 160, 89, 0.1)',
-                    fill: true, tension: 0.5, borderWidth: 3, pointRadius: 0
-                }]
+                labels: ['M1', 'M2', 'M3', 'M4', 'M5'],
+                datasets: [{ data: [10, 25, 18, 45, 70], borderColor: '#C5A059', backgroundColor: 'rgba(197, 160, 89, 0.1)', fill: true, tension: 0.4 }]
             },
             options: { plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { grid: { display: false } } } }
         });
