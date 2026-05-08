@@ -1,3 +1,37 @@
+// ========================= // FILE: package.json // ========================= { "name": "fxstreetcode", "private": true, "version": "0.0.0", "type": "module", "scripts": { "dev": "vite", "build": "vite build", "preview": "vite preview" }, "dependencies": { "react": "^18.2.0", "react-dom": "^18.2.0" }, "devDependencies": { "@vitejs/plugin-react": "^4.2.1", "autoprefixer": "^10.4.19", "postcss": "^8.4.38", "tailwindcss": "^3.4.3", "vite": "^5.2.0" } }
+
+// ========================= // FILE: vite.config.js // ========================= import { defineConfig } from 'vite' import react from '@vitejs/plugin-react'
+
+export default defineConfig({ plugins: [react()], })
+
+// ========================= // FILE: tailwind.config.js // ========================= export default { content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'], theme: { extend: {}, }, plugins: [], }
+
+// ========================= // FILE: postcss.config.js // ========================= export default { plugins: { tailwindcss: {}, autoprefixer: {}, }, }
+
+// ========================= // FILE: src/main.jsx // ========================= import React from 'react' import ReactDOM from 'react-dom/client' import App from './App' import './index.css'
+
+ReactDOM.createRoot(document.getElementById('root')).render( <React.StrictMode> <App /> </React.StrictMode>, )
+
+// ========================= // FILE: src/index.css // ========================= @tailwind base; @tailwind components; @tailwind utilities;
+
+body { margin: 0; padding: 0; background: black; font-family: Arial, sans-serif; }
+
+// ========================= // FILE: vercel.json // ========================= { "rewrites": [ { "source": "/(.*)", "destination": "/" } ] }
+
+// ========================= // FILE: index.html // =========================
+
+<!DOCTYPE html><html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Fxstreetcode</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>// ========================= // FILE: src/App.jsx // =========================
+
 export default function FxStreetCode() { const plans = [ { name: 'BASIC PLAN', price: '$300', profit: '5% – 10% Profit', accuracy: '80% – 90%', duration: '4 Months Access', focus: 'XAUUSD (Gold) & Major USD Pairs', ideal: 'Beginners looking for steady growth.', glow: 'from-yellow-500 to-amber-700' }, { name: 'MID-TIER PLAN', price: '$700', profit: '10% – 15% Profit', accuracy: '85% – 95%', duration: '8 Months Access', focus: 'XAUUSD, BTC (Crypto) & Forex Majors', ideal: 'Serious traders aiming for high-velocity returns.', glow: 'from-orange-500 to-yellow-700' }, { name: 'PLATINUM VIP', price: '$2000', profit: '15% – 20% Profit', accuracy: '95%+', duration: '1 Year Full Access', focus: 'All Segments (Indices, Metals, Crypto, Forex)', ideal: 'Institutional-level growth and maximum scaling.', glow: 'from-yellow-300 to-yellow-600' } ]
 
 const features = [ 'Fully Automated Execution', 'Advanced Risk Management', '24/7 Priority Support', 'Market Momentum Analysis', 'Instant Trade Alerts', 'AI-Powered Smart Entries', 'Capital Protection System', 'Multi-Market Scalping Engine' ]
@@ -233,4 +267,4 @@ return ( <div className="min-h-screen bg-black text-white overflow-hidden font-s
   </section>
 </div>
 
-) }
+) }                        
