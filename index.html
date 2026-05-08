@@ -1,250 +1,232 @@
-<style>
-.chart-bg{
-    position:absolute;
-    inset:0;
-    overflow:hidden;
-    opacity:0.15;
-    pointer-events:none;
-}
-
-.chart-line{
-    position:absolute;
-    width:200%;
-    height:2px;
-    background:linear-gradient(90deg,transparent,#d4af37,transparent);
-    animation:moveChart 8s linear infinite;
-}
-
-.chart-line:nth-child(1){
-    top:30%;
-    animation-delay:0s;
-}
-
-.chart-line:nth-child(2){
-    top:50%;
-    animation-delay:2s;
-}
-
-.chart-line:nth-child(3){
-    top:70%;
-    animation-delay:4s;
-}
-
-@keyframes moveChart{
-    0%{
-        transform:translateX(-50%) translateY(0px) rotate(-2deg);
-    }
-    25%{
-        transform:translateX(-25%) translateY(-20px) rotate(1deg);
-    }
-    50%{
-        transform:translateX(0%) translateY(10px) rotate(-1deg);
-    }
-    75%{
-        transform:translateX(25%) translateY(-15px) rotate(2deg);
-    }
-    100%{
-        transform:translateX(50%) translateY(0px) rotate(-2deg);
-    }
-}
-
-.floating-glow{
-    position:absolute;
-    width:400px;
-    height:400px;
-    background:radial-gradient(circle, rgba(212,175,55,0.18) 0%, transparent 70%);
-    border-radius:50%;
-    filter:blur(40px);
-    animation:floatGlow 6s ease-in-out infinite;
-}
-
-@keyframes floatGlow{
-    0%,100%{
-        transform:translateY(0px);
-    }
-    50%{
-        transform:translateY(-30px);
-    }
-}
-</style>                 
-
-<div class="floating-orb orb1"></div>
-<div class="floating-orb orb2"></div>
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fxstreetcode | Premium Trading Solutions</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <title>Fxstreetcode | Global Institutional Trading Systems</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        :root { 
-            --gold: #d4af37; 
-            --premium-bg: #050a14; 
-            --card-bg: #0c1425; 
-            --text-gray: #94a3b8;
-            --glass: rgba(255, 255, 255, 0.03);
-        }
-        body { 
-            font-family: 'Poppins', sans-serif; 
-            background: var(--premium-bg); 
-            color: white; 
-            margin: 0; 
-            line-height: 1.6;
-        }
-        nav { 
-            display: flex; 
-            justify-content: center; 
-            padding: 20px; 
-            background: rgba(5, 10, 20, 0.95); 
-            border-bottom: 1px solid var(--glass);
-        }
-        .logo { font-weight: bold; font-size: 1.6rem; color: var(--gold); letter-spacing: 2px; }
-
-        .hero { 
-            text-align: center; 
-            padding: 100px 20px; 
-            background: radial-gradient(circle at center, #101a30 0%, var(--premium-bg) 100%); 
-        }
-        .hero h1 { font-size: 2.5rem; margin-bottom: 10px; }
-        .hero p { color: var(--text-gray); max-width: 700px; margin: 0 auto; font-size: 1.1rem; }
-
-        .pricing-grid { 
-            display: flex; 
-            flex-wrap: wrap; 
-            justify-content: center; 
-            gap: 30px; 
-            padding: 50px 20px; 
-        }
-        .plan-card { 
-            background: var(--card-bg); 
-            border: 1px solid var(--glass); 
-            padding: 40px 30px; 
-            border-radius: 24px; 
-            width: 320px; 
-            text-align: center; 
-            transition: all 0.4s ease;
-            position: relative;
-            overflow: hidden;
-        }
-        .plan-card:hover { 
-            transform: translateY(-10px); 
-            border-color: var(--gold);
-            box-shadow: 0 20px 40px rgba(0,0,0,0.4);
-        }
-        .plan-card h3 { font-size: 1.4rem; margin-bottom: 5px; color: var(--gold); }
-        .investment { font-size: 2.5rem; font-weight: bold; margin: 20px 0; border-bottom: 1px solid var(--glass); padding-bottom: 20px; }
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&family=Space+Grotesk:wght@300;500;700&display=swap');
         
-        .features-list { list-style: none; padding: 0; text-align: left; margin: 25px 0; }
-        .features-list li { margin: 12px 0; font-size: 0.9rem; display: flex; align-items: center; }
-        .features-list li i { color: var(--gold); margin-right: 12px; width: 20px; }
+        :root { 
+            --gold: #C5A059; 
+            --deep-navy: #020617; 
+            --slate-border: rgba(148, 163, 184, 0.1);
+        }
+        
+        body { 
+            background-color: var(--deep-navy); 
+            color: #f1f5f9; 
+            font-family: 'Inter', sans-serif; 
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 10% 20%, rgba(197, 160, 89, 0.03) 0%, transparent 50%),
+                radial-gradient(circle at 90% 80%, rgba(56, 189, 248, 0.02) 0%, transparent 50%);
+        }
 
-        .core-features { 
-            background: var(--glass); 
-            padding: 60px 20px; 
-            text-align: center; 
-            margin-top: 50px;
-        }
-        .core-grid { 
-            display: grid; 
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); 
-            max-width: 1000px; 
-            margin: 40px auto 0; 
-            gap: 20px; 
-        }
-        .core-item { padding: 20px; background: var(--card-bg); border-radius: 15px; border: 1px solid var(--glass); }
-        .core-item i { font-size: 2rem; color: var(--gold); margin-bottom: 15px; }
+        .heading-font { font-family: 'Space Grotesk', sans-serif; }
 
-        .footer { padding: 40px; text-align: center; color: var(--text-gray); border-top: 1px solid var(--glass); }
-        .btn-cta { 
-            background: var(--gold); 
-            color: black; 
-            padding: 12px 30px; 
-            border-radius: 50px; 
-            text-decoration: none; 
-            font-weight: bold; 
-            display: inline-block; 
-            margin-top: 20px;
-            transition: 0.3s;
+        /* 3D Glass Layer */
+        .glass-panel {
+            background: rgba(15, 23, 42, 0.6);
+            backdrop-filter: blur(12px);
+            border: 1px solid var(--slate-border);
+            transition: all 0.5s cubic-bezier(0.4, 0, 0.2, 1);
         }
-        .btn-cta:hover { opacity: 0.9; transform: scale(1.05); }
+        .glass-panel:hover {
+            transform: perspective(1000px) rotateX(2deg) translateY(-8px);
+            border-color: rgba(197, 160, 89, 0.4);
+            box-shadow: 0 20px 40px -20px rgba(0,0,0,0.8);
+        }
+
+        /* Animated Grid Background */
+        .grid-bg {
+            background-size: 40px 40px;
+            background-image: linear-gradient(to right, rgba(255,255,255,0.02) 1px, transparent 1px),
+                              linear-gradient(to bottom, rgba(255,255,255,0.02) 1px, transparent 1px);
+        }
+
+        .gold-gradient-text {
+            background: linear-gradient(135deg, #f5e3c6 0%, #c5a059 50%, #8a6d3b 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .market-dot {
+            height: 8px; width: 8px; border-radius: 50%; display: inline-block;
+            margin-right: 8px; box-shadow: 0 0 10px currentColor;
+        }
+
+        @keyframes pulse-gold {
+            0% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0.4); }
+            70% { box-shadow: 0 0 0 15px rgba(197, 160, 89, 0); }
+            100% { box-shadow: 0 0 0 0 rgba(197, 160, 89, 0); }
+        }
+        .active-pulse { animation: pulse-gold 2s infinite; }
     </style>
 </head>
-<body>
+<body class="grid-bg">
 
-    <nav><div class="logo">🚀 FXSTREETCODE</div></nav>
+    <nav class="fixed w-full z-50 px-8 py-6 flex justify-between items-center backdrop-blur-xl border-b border-white/5">
+        <div class="logo heading-font font-bold text-xl tracking-widest gold-gradient-text">FXSTREETCODE</div>
+        <div class="hidden lg:flex space-x-12 text-[10px] uppercase tracking-[0.3em] font-medium text-gray-400">
+            <a href="#markets" class="hover:text-white transition">Global Markets</a>
+            <a href="#strategies" class="hover:text-white transition">Strategies</a>
+            <a href="#institutional" class="hover:text-white transition">Institutional</a>
+        </div>
+        <a href="#" class="px-8 py-2 border border-[#c5a059]/30 text-[#c5a059] text-[10px] tracking-widest font-bold uppercase hover:bg-[#c5a059] hover:text-black transition-all">Portal Access</a>
+    </nav>
 
-    <section class="hero">
-        <h1>Premium Trading Solutions</h1>
-        <p>Elevate your trading game with our precision-engineered algorithmic strategies. Designed for consistency, managed with expertise.</p>
+    <section class="pt-40 pb-20 px-8 text-center relative">
+        <div class="max-w-4xl mx-auto">
+            <span class="text-[10px] uppercase tracking-[0.5em] text-[#c5a059] mb-4 block">Engineered for Excellence</span>
+            <h1 class="heading-font text-5xl md:text-7xl font-bold mb-8 leading-tight">Quant-Driven <br> <span class="gold-gradient-text">Algorithmic Mastery.</span></h1>
+            <p class="text-gray-400 text-lg font-light max-w-2xl mx-auto leading-relaxed">
+                Seamlessly navigating global liquidity. We provide sophisticated execution systems for institutional-level capital management.
+            </p>
+        </div>
     </section>
 
-    <div class="pricing-grid">
-        <div class="plan-card">
-            <h3>🔹 BASIC PLAN</h3>
-            <div class="investment">$300</div>
-            <ul class="features-list">
-                <li><i class="fas fa-chart-line"></i> 5% – 10% Daily Profit</li>
-                <li><i class="fas fa-bullseye"></i> 80% – 90% Accuracy</li>
-                <li><i class="fas fa-coins"></i> Gold & Major USD Pairs</li>
-                <li><i class="fas fa-calendar-alt"></i> 4 Months Access</li>
-            </ul>
-            <a href="mailto:support@fxstreetcode.com" class="btn-cta">Start Journey</a>
-        </div>
-
-        <div class="plan-card" style="border-color: rgba(212, 175, 55, 0.5);">
-            <h3>🔸 MID-TIER PLAN</h3>
-            <div class="investment">$700</div>
-            <ul class="features-list">
-                <li><i class="fas fa-rocket"></i> 10% – 15% Daily Profit</li>
-                <li><i class="fas fa-fire"></i> 85% – 95% Accuracy</li>
-                <li><i class="fas fa-bitcoin"></i> Gold, BTC & Forex</li>
-                <li><i class="fas fa-calendar-check"></i> 8 Months Access</li>
-            </ul>
-            <a href="mailto:support@fxstreetcode.com" class="btn-cta" style="background: white;">Join Elite</a>
-        </div>
-
-        <div class="plan-card" style="background: linear-gradient(145deg, #0c1425 0%, #16223b 100%); border-color: var(--gold);">
-            <h3>👑 PLATINUM VIP</h3>
-            <div class="investment">$2000</div>
-            <ul class="features-list">
-                <li><i class="fas fa-money-bill-wave"></i> 15% – 20% Daily Profit</li>
-                <li><i class="fas fa-bolt"></i> 95%+ Precision</li>
-                <li><i class="fas fa-globe"></i> All Segments (Indices, Crypto)</li>
-                <li><i class="fas fa-infinity"></i> 1 Year Full Access</li>
-            </ul>
-            <a href="mailto:support@fxstreetcode.com" class="btn-cta">Get VIP Access</a>
-        </div>
-    </div>
-
-    <section class="core-features">
-        <h2>🛠 CORE FEATURES</h2>
-        <div class="core-grid">
-            <div class="core-item">
-                <i class="fas fa-robot"></i>
-                <p>Fully Automated Execution</p>
-            </div>
-            <div class="core-item">
-                <i class="fas fa-shield-alt"></i>
-                <p>Advanced Risk Management</p>
-            </div>
-            <div class="core-item">
-                <i class="fas fa-headset"></i>
-                <p>24/7 Priority Support</p>
-            </div>
-            <div class="core-item">
-                <i class="fas fa-brain"></i>
-                <p>Momentum Analysis</p>
+    <section id="markets" class="px-8 py-20">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-4 mb-12">
+                <div class="glass-panel p-6 rounded-sm">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500">London</span>
+                        <span class="market-dot text-green-500 bg-green-500"></span>
+                    </div>
+                    <div class="mt-4 heading-font text-xl font-semibold">Open</div>
+                </div>
+                <div class="glass-panel p-6 rounded-sm">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500">New York</span>
+                        <span class="market-dot text-green-500 bg-green-500"></span>
+                    </div>
+                    <div class="mt-4 heading-font text-xl font-semibold">Active</div>
+                </div>
+                <div class="glass-panel p-6 rounded-sm">
+                    <div class="flex justify-between items-center">
+                        <span class="text-[10px] uppercase tracking-widest text-gray-500">Tokyo</span>
+                        <span class="market-dot text-orange-500 bg-orange-500"></span>
+                    </div>
+                    <div class="mt-4 heading-font text-xl font-semibold">Closing</div>
+                </div>
+                <div class="glass-panel p-6 rounded-sm border-[#c5a059]/20">
+                    <div class="text-[10px] uppercase tracking-widest text-[#c5a059] mb-4">Volatility Index</div>
+                    <div class="heading-font text-2xl font-bold">14.28 <span class="text-xs text-green-400">Stable</span></div>
+                </div>
             </div>
         </div>
     </section>
 
-    <footer class="footer">
-        <p>📉 Profitable | Secure | User-Friendly</p>
-        <p>© 2026 Fxstreetcode. Start your journey today with just $300.</p>
+    <section id="strategies" class="px-8 py-20 bg-black/20">
+        <div class="max-w-7xl mx-auto">
+            <h2 class="heading-font text-3xl font-bold mb-16 text-center tracking-tight">System Access Architectures</h2>
+            
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <div class="glass-panel p-10 flex flex-col justify-between">
+                    <div>
+                        <h3 class="text-[10px] uppercase tracking-[0.4em] text-gray-500 mb-8">Standard Access</h3>
+                        <div class="heading-font text-4xl font-bold mb-10">$300 <span class="text-xs font-light text-gray-500">/ Entry</span></div>
+                        <ul class="space-y-6 text-sm font-light text-gray-300">
+                            <li class="flex items-center"><i class="fa-solid fa-chevron-right text-[10px] mr-4 text-[#c5a059]"></i> Target: 5% – 10% Daily</li>
+                            <li class="flex items-center"><i class="fa-solid fa-chevron-right text-[10px] mr-4 text-[#c5a059]"></i> Precision: 80% – 90%</li>
+                            <li class="flex items-center"><i class="fa-solid fa-chevron-right text-[10px] mr-4 text-[#c5a059]"></i> XAUUSD & FX Majors</li>
+                            <li class="flex items-center"><i class="fa-solid fa-chevron-right text-[10px] mr-4 text-[#c5a059]"></i> 4 Months Validity</li>
+                        </ul>
+                    </div>
+                    <button class="mt-12 py-4 bg-white/5 border border-white/10 hover:border-[#c5a059] transition uppercase text-[10px] tracking-widest font-bold">Initialize Deployment</button>
+                </div>
+
+                <div class="glass-panel p-10 border-[#c5a059]/30 relative active-pulse">
+                    <div class="absolute -top-3 left-1/2 -translate-x-1/2 bg-[#c5a059] text-black text-[8px] font-black px-4 py-1 tracking-[0.2em] uppercase">Most Deployed</div>
+                    <div>
+                        <h3 class="text-[10px] uppercase tracking-[0.4em] text-[#c5a059] mb-8">Professional Tier</h3>
+                        <div class="heading-font text-4xl font-bold mb-10">$700 <span class="text-xs font-light text-gray-500">/ Allocation</span></div>
+                        <ul class="space-y-6 text-sm font-light text-gray-300">
+                            <li class="flex items-center"><i class="fa-solid fa-chevron-right text-[10px] mr-4 text-[#c5a059]"></i> Target: 10% – 15% Daily</li>
+                            <li class="flex items-center"><i class="fa-solid fa-chevron-right text-[10px] mr-4 text-[#c5a059]"></i> Precision: 85% – 95%</li>
+                            <li class="flex items-center"><i class="fa-solid fa-chevron-right text-[10px] mr-4 text-[#c5a059]"></i> Multi-Asset (XAU, BTC, FX)</li>
+                            <li class="flex items-center"><i class="fa-solid fa-chevron-right text-[10px] mr-4 text-[#c5a059]"></i> 8 Months Validity</li>
+                        </ul>
+                    </div>
+                    <button class="mt-12 py-4 bg-[#c5a059] text-black uppercase text-[10px] tracking-widest font-black">Escalate to Pro</button>
+                </div>
+
+                <div class="glass-panel p-10 bg-gradient-to-b from-[#c5a059]/5 to-transparent">
+                    <div>
+                        <h3 class="text-[10px] uppercase tracking-[0.4em] text-gray-400 mb-8">Platinum Institutional</h3>
+                        <div class="heading-font text-4xl font-bold mb-10">$2000 <span class="text-xs font-light text-gray-500">/ Full Suite</span></div>
+                        <ul class="space-y-6 text-sm font-light text-gray-300">
+                            <li class="flex items-center"><i class="fa-solid fa-chevron-right text-[10px] mr-4 text-[#c5a059]"></i> Target: 15% – 20% Daily</li>
+                            <li class="flex items-center"><i class="fa-solid fa-chevron-right text-[10px] mr-4 text-[#c5a059]"></i> Precision: 95%+ Ultra-High</li>
+                            <li class="flex items-center"><i class="fa-solid fa-chevron-right text-[10px] mr-4 text-[#c5a059]"></i> Full Segment Access</li>
+                            <li class="flex items-center"><i class="fa-solid fa-chevron-right text-[10px] mr-4 text-[#c5a059]"></i> 1 Year Integrated Access</li>
+                        </ul>
+                    </div>
+                    <button class="mt-12 py-4 border border-[#c5a059] text-[#c5a059] hover:bg-[#c5a059] hover:text-black transition uppercase text-[10px] tracking-widest font-bold">Request Institutional Onboarding</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-20 px-8">
+        <div class="max-w-7xl mx-auto border-t border-white/5 pt-20">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-12">
+                <div class="text-center md:text-left">
+                    <i class="fa-solid fa-microchip text-[#c5a059] text-2xl mb-6"></i>
+                    <h4 class="heading-font font-bold mb-4">Neural Execution</h4>
+                    <p class="text-xs text-gray-500 font-light leading-relaxed">Latency-optimized automated execution ensures zero-drift entry across global pools.</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <i class="fa-solid fa-vault text-[#c5a059] text-2xl mb-6"></i>
+                    <h4 class="heading-font font-bold mb-4">Capital Shield</h4>
+                    <p class="text-xs text-gray-500 font-light leading-relaxed">Dynamic drawdown protection protocols with hard-coded stop-limit parameters.</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <i class="fa-solid fa-network-wired text-[#c5a059] text-2xl mb-6"></i>
+                    <h4 class="heading-font font-bold mb-4">Adaptive IQ</h4>
+                    <p class="text-xs text-gray-500 font-light leading-relaxed">Strategies evolve with real-time price action and institutional liquidity shifts.</p>
+                </div>
+                <div class="text-center md:text-left">
+                    <i class="fa-solid fa-globe text-[#c5a059] text-2xl mb-6"></i>
+                    <h4 class="heading-font font-bold mb-4">Global Network</h4>
+                    <p class="text-xs text-gray-500 font-light leading-relaxed">Unified access to Indices, Metals, Crypto, and Major Forex segments.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer class="bg-black py-20 px-8 border-t border-white/5">
+        <div class="max-w-7xl mx-auto flex flex-col md:flex-row justify-between items-center">
+            <div class="text-center md:text-left mb-10 md:mb-0">
+                <div class="heading-font font-bold tracking-widest gold-gradient-text mb-4">FXSTREETCODE</div>
+                <p class="text-[10px] text-gray-600 uppercase tracking-widest">© 2026 Integrated Financial Systems</p>
+            </div>
+            <div class="flex space-x-12">
+                <div class="text-center">
+                    <div class="text-xl font-bold heading-font">85.4%</div>
+                    <div class="text-[8px] uppercase tracking-widest text-gray-600 mt-2">Avg Accuracy</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-xl font-bold heading-font">Global</div>
+                    <div class="text-[8px] uppercase tracking-widest text-gray-600 mt-2">Scale</div>
+                </div>
+                <div class="text-center">
+                    <div class="text-xl font-bold heading-font">24/7</div>
+                    <div class="text-[8px] uppercase tracking-widest text-gray-600 mt-2">Uptime</div>
+                </div>
+            </div>
+        </div>
+        <div class="max-w-7xl mx-auto mt-12 pt-12 border-t border-white/5">
+            <p class="text-[9px] text-gray-700 leading-relaxed text-justify uppercase tracking-tighter">
+                Disclaimer: Algorithmic trading involves substantial risk of loss. Past performance, whether real or simulated, does not guarantee future success. Fxstreetcode systems are tools for market interaction and do not constitute financial advice. System access is subject to deployment availability.
+            </p>
+        </div>
     </footer>
 
 </body>
 </html>
+
+        
