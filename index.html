@@ -305,3 +305,165 @@
     </script>
 </body>
 </html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fxstreetcode | Quant Dashboard & AI Neural Grid</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&display=swap" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+    <style>
+        :root { --gold: #C5A059; --bg: #030712; }
+        body { background: var(--bg); color: white; font-family: 'Outfit', sans-serif; overflow-x: hidden; }
+        
+        /* Custom Mouse Glow Effect */
+        #cursor-glow {
+            position: fixed; width: 400px; height: 400px;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.08) 0%, transparent 70%);
+            border-radius: 50%; pointer-events: none; z-index: 999; transform: translate(-50%, -50%);
+        }
+
+        .premium-glass {
+            background: rgba(255, 255, 255, 0.01); backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .premium-glass:hover { border-color: var(--gold); transform: translateY(-5px); background: rgba(255, 255, 255, 0.03); }
+        .gold-text { background: linear-gradient(to right, #F5E3C6, #C5A059, #8A6D3B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
+        
+        .btn-master {
+            background: var(--gold); color: black; font-weight: 800; padding: 1rem 2.5rem; border-radius: 99px; transition: 0.4s;
+            text-transform: uppercase; letter-spacing: 2px; font-size: 10px; cursor: pointer; border: none;
+        }
+
+        /* Dashboard Active State */
+        .tab-content { display: none; }
+        .tab-content.active { display: block; animation: fadeIn 0.8s ease; }
+        @keyframes fadeIn { from { opacity: 0; transform: translateY(10px); } to { opacity: 1; transform: translateY(0); } }
+
+        .signal-pulse { width: 10px; height: 10px; background: #22c55e; border-radius: 50%; box-shadow: 0 0 15px #22c55e; animation: pulse 1.5s infinite; }
+        @keyframes pulse { 0% { transform: scale(1); opacity: 1; } 100% { transform: scale(3); opacity: 0; } }
+    </style>
+</head>
+<body>
+    <div id="cursor-glow"></div>
+
+    <nav class="fixed w-full z-[100] px-6 py-5 premium-glass border-b border-white/5 flex justify-between items-center">
+        <div class="text-xl font-black gold-text tracking-tighter">FXSTREETCODE</div>
+        <div class="hidden md:flex space-x-8 text-[9px] tracking-[0.3em] font-bold text-gray-500 uppercase">
+            <button onclick="showTab('home')" class="hover:text-white transition">Home</button>
+            <button onclick="showTab('dashboard')" class="hover:text-white transition">Dashboard</button>
+            <button onclick="showTab('signals')" class="hover:text-white transition">AI Signals</button>
+            <button onclick="showTab('analytics')" class="hover:text-white transition">Performance</button>
+        </div>
+        <button onclick="showTab('dashboard')" class="btn-master py-2 px-6">Terminal Login</button>
+    </nav>
+
+    <div id="home" class="tab-content active pt-32 px-6">
+        <section class="max-w-6xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20 items-center min-h-[70vh]">
+            <div>
+                <h1 class="text-6xl md:text-8xl font-black leading-none mb-8 uppercase">Neural <br><span class="gold-text italic">Grid.</span></h1>
+                <p class="text-gray-500 text-lg mb-10 max-w-md font-light leading-relaxed">Institutional liquidity and AI-driven precision. The future of algorithmic trading is here.</p>
+                <button onclick="showTab('dashboard')" class="btn-master">Launch Engine</button>
+            </div>
+            <div class="premium-glass p-4 rounded-[2.5rem] rotate-2 shadow-2xl">
+                <iframe src="https://s.tradingview.com/widgetembed/?symbol=FX%3AXAUUSD&theme=dark" width="100%" height="400px" frameborder="0"></iframe>
+            </div>
+        </section>
+    </div>
+        <div id="dashboard" class="tab-content pt-32 px-6">
+        <div class="max-w-7xl mx-auto">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                <div class="premium-glass p-8 rounded-3xl text-center">
+                    <p class="text-[9px] text-gray-500 uppercase tracking-widest mb-2">Total Equity</p>
+                    <h4 class="text-3xl font-black gold-text">$124,500.00</h4>
+                </div>
+                <div class="premium-glass p-8 rounded-3xl text-center">
+                    <p class="text-[9px] text-gray-500 uppercase tracking-widest mb-2">Today's P/L</p>
+                    <h4 class="text-3xl font-black text-green-400">+$2,410.50</h4>
+                </div>
+                <div class="premium-glass p-8 rounded-3xl text-center">
+                    <p class="text-[9px] text-gray-500 uppercase tracking-widest mb-2">Win Rate</p>
+                    <h4 class="text-3xl font-black">94.2%</h4>
+                </div>
+                <div class="premium-glass p-8 rounded-3xl text-center border-[#c5a059]/30">
+                    <p class="text-[9px] text-gold uppercase tracking-widest mb-2">AI Confidence</p>
+                    <h4 class="text-3xl font-black gold-text uppercase">Extreme</h4>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8 mb-12">
+                <div class="lg:col-span-2 premium-glass p-8 rounded-[3rem]">
+                    <h5 class="text-xs font-bold uppercase tracking-widest mb-6">Equity Growth (Institutional View)</h5>
+                    <canvas id="equityChart" height="150"></canvas>
+                </div>
+                <div class="premium-glass p-8 rounded-[3rem]">
+                    <h5 class="text-xs font-bold uppercase tracking-widest mb-6">Risk Meter</h5>
+                    <div class="w-full h-4 bg-white/5 rounded-full overflow-hidden mt-10">
+                        <div class="w-[15%] h-full bg-green-500 shadow-[0_0_20px_#22c55e]"></div>
+                    </div>
+                    <p class="text-center text-[10px] mt-4 text-gray-500">LOW RISK (0.5% LOT)</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div id="signals" class="tab-content pt-32 px-6">
+        <div class="max-w-4xl mx-auto space-y-6">
+            <div class="premium-glass p-10 rounded-[3rem] border-green-500/20 relative overflow-hidden">
+                <div class="absolute top-6 right-10 flex items-center gap-2">
+                    <div class="signal-pulse"></div> <span class="text-[9px] font-bold text-green-500 uppercase">Live Signal</span>
+                </div>
+                <h3 class="text-[10px] text-gray-500 uppercase tracking-[0.4em] mb-4">Neural Entry #XAUUSD</h3>
+                <div class="flex justify-between items-end">
+                    <div>
+                        <h4 class="text-6xl font-black text-green-400 mb-2 uppercase">BUY</h4>
+                        <p class="text-sm font-bold">Entry: 2311.50 | TP: 2335.00 | SL: 2295.00</p>
+                    </div>
+                    <div class="text-right">
+                        <p class="text-[10px] text-gray-500 mb-1">CONFIDENCE</p>
+                        <p class="text-4xl font-black gold-text">97.8%</p>
+                    </div>
+                </div>
+            </div>
+            </div>
+    </div>
+
+    <script>
+        // Mouse Glow Logic
+        const glow = document.getElementById('cursor-glow');
+        document.addEventListener('mousemove', (e) => {
+            glow.style.left = e.clientX + 'px';
+            glow.style.top = e.clientY + 'px';
+        });
+
+        // Tab Switching Logic
+        function showTab(tabId) {
+            document.querySelectorAll('.tab-content').forEach(tab => tab.classList.remove('active'));
+            document.getElementById(tabId).classList.add('active');
+            window.scrollTo(0, 0);
+        }
+
+        // Equity Chart Logic (Apex/ChartJS style)
+        const ctx = document.getElementById('equityChart').getContext('2d');
+        new Chart(ctx, {
+            type: 'line',
+            data: {
+                labels: ['Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat', 'Sun'],
+                datasets: [{
+                    label: 'Equity Growth',
+                    data: [100000, 105000, 103000, 112000, 118000, 122000, 124500],
+                    borderColor: '#C5A059',
+                    backgroundColor: 'rgba(197, 160, 89, 0.1)',
+                    fill: true,
+                    tension: 0.4
+                }]
+            },
+            options: { plugins: { legend: { display: false } }, scales: { y: { display: false }, x: { grid: { display: false } } } }
+        });
+    </script>
+</body>
+</html>
