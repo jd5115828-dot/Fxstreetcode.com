@@ -3,236 +3,260 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Fxstreetcode | Global Trading Systems</title>
+    <title>Fxstreetcode | Institutional Quant Platform</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;600;800&family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;900&family=Space+Grotesk:wght@700&display=swap" rel="stylesheet">
     
     <style>
-        :root { --gold: #C5A059; --bg: #020617; }
+        :root { --gold: #C5A059; --bg: #030712; }
         body { 
-            background: var(--bg); color: white; font-family: 'Plus Jakarta Sans', sans-serif; 
+            background: var(--bg); color: white; font-family: 'Outfit', sans-serif; 
             scroll-behavior: smooth; overflow-x: hidden;
         }
-        .heading-font { font-family: 'Space Grotesk', sans-serif; }
-
-        /* Loader Animation */
-        #loader {
-            position: fixed; inset: 0; background: var(--bg); z-index: 9999;
-            display: flex; justify-content: center; align-items: center;
+        
+        /* Video/Motion Background */
+        .video-container {
+            position: fixed; inset: 0; z-index: -1; overflow: hidden;
+            background: radial-gradient(circle at center, #111827 0%, #030712 100%);
         }
-        .loader-circle { width: 50px; height: 50px; border: 3px solid #1e293b; border-top-color: var(--gold); border-radius: 50%; animation: spin 1s linear infinite; }
-        @keyframes spin { to { transform: rotate(360deg); } }
+        .abstract-glow {
+            position: absolute; width: 600px; height: 600px;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.05) 0%, transparent 70%);
+            border-radius: 50%; filter: blur(80px); animation: move 20s infinite alternate;
+        }
+        @keyframes move { from { transform: translate(-10%, -10%); } to { transform: translate(20%, 20%); } }
 
-        /* Glassmorphism */
-        .glass { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(12px); border: 1px solid rgba(255, 255, 255, 0.05); }
-        .glass-premium { background: linear-gradient(135deg, rgba(255,255,255,0.05) 0%, rgba(255,255,255,0) 100%); border: 1px solid rgba(197, 160, 89, 0.2); }
+        /* Glassmorphism & Cards */
+        .premium-glass {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+        }
+        .premium-glass:hover {
+            background: rgba(255, 255, 255, 0.04);
+            border-color: var(--gold);
+            transform: translateY(-10px);
+        }
+
+        .gold-text {
+            background: linear-gradient(to right, #F5E3C6, #C5A059, #8A6D3B);
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+        }
+
+        /* Tabs & Dashboard Style */
+        .active-tab { border-bottom: 2px solid var(--gold); color: var(--gold); }
         
-        /* Interactive Elements */
-        .btn-gold { background: var(--gold); color: black; transition: 0.4s cubic-bezier(0.4, 0, 0.2, 1); }
-        .btn-gold:hover { transform: scale(1.05); box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); }
-        
-        .gold-text { background: linear-gradient(135deg, #f5e3c6 0%, #c5a059 50%, #8a6d3b 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
-        
-        /* Floating Animation */
-        .float { animation: float 6s ease-in-out infinite; }
-        @keyframes float { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-20px); } }
-        
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 8px; }
-        ::-webkit-scrollbar-track { background: #020617; }
-        ::-webkit-scrollbar-thumb { background: #1e293b; border-radius: 10px; }
-        ::-webkit-scrollbar-thumb:hover { background: var(--gold); }
+        /* Custom UI Buttons */
+        .btn-master {
+            background: var(--gold); color: black; font-weight: 800;
+            padding: 1rem 2.5rem; border-radius: 99px; transition: 0.4s;
+            text-transform: uppercase; letter-spacing: 2px; font-size: 10px;
+        }
+        .btn-master:hover { box-shadow: 0 0 40px rgba(197, 160, 89, 0.4); transform: scale(1.05); }
+
+        /* Smooth Section Transitions */
+        section { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
+        section.visible { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
 
-    <div id="loader"><div class="loader-circle"></div></div>
+    <div class="video-container">
+        <div class="abstract-glow"></div>
+        <div class="abstract-glow" style="right: 0; bottom: 0; animation-delay: -5s;"></div>
+    </div>
 
-    <nav class="fixed w-full z-50 px-6 py-4 glass border-b border-white/5 flex justify-between items-center">
-        <div class="flex items-center gap-2">
-            <span class="heading-font font-bold text-xl tracking-tighter gold-text">FXSTREETCODE</span>
+    <nav class="fixed w-full z-[100] px-8 py-4 premium-glass border-b border-white/5 flex justify-between items-center">
+        <div class="text-2xl font-black gold-text tracking-tighter">FXSTREETCODE</div>
+        <div class="hidden lg:flex space-x-8 text-[10px] tracking-[0.3em] font-bold text-gray-400">
+            <a href="#hero" class="hover:text-white transition">Home</a>
+            <a href="#terminal" class="hover:text-white transition">Terminal</a>
+            <a href="#plans" class="hover:text-white transition">Equity Plans</a>
+            <a href="#blog" class="hover:text-white transition">Insights</a>
+            <a href="#contact" class="hover:text-white transition">Support</a>
         </div>
-        <div class="hidden lg:flex space-x-10 text-[11px] uppercase tracking-[0.2em] font-semibold text-gray-400">
-            <a href="#home" class="hover:text-white transition">Terminal</a>
-            <a href="#markets" class="hover:text-white transition">Global Markets</a>
-            <a href="#plans" class="hover:text-white transition">Institutional Plans</a>
-            <a href="#faq" class="hover:text-white transition">Insights</a>
-        </div>
-        <div class="flex gap-4">
-            <a href="#" class="px-5 py-2 text-[10px] font-bold uppercase tracking-widest border border-white/10 hover:bg-white hover:text-black transition">Login</a>
-            <a href="#" class="px-5 py-2 text-[10px] font-bold uppercase tracking-widest btn-gold">Deploy Bot</a>
+        <div class="flex items-center gap-4">
+            <button class="text-xs font-bold text-gray-400" onclick="toggleMode()"><i class="fa-solid fa-moon"></i></button>
+            <a href="#" class="btn-master py-3 px-6">Client Login</a>
         </div>
     </nav>
 
-    <section id="home" class="relative min-h-screen flex items-center justify-center px-6 pt-20 overflow-hidden">
-        <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-gradient-to-b from-transparent to-[#020617]"></div>
-            <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[#c5a059]/5 rounded-full blur-[120px]"></div>
-        </div>
-
-        <div class="relative z-10 text-center max-w-5xl">
-            <h1 class="heading-font text-6xl md:text-8xl font-bold leading-none mb-6">Quant-Engineered <br> <span class="gold-text italic">Wealth Systems.</span></h1>
-            <p class="text-gray-400 text-lg md:text-xl font-light mb-10 max-w-2xl mx-auto leading-relaxed">
-                Institutional-grade algorithmic execution for XAUUSD, Forex, and Digital Assets. Precision-timed entries with zero-latency deployment.
-            </p>
-            <div class="flex flex-wrap justify-center gap-6">
-                <a href="#plans" class="px-10 py-4 btn-gold text-xs font-bold uppercase tracking-[0.2em]">Start Institutional Access</a>
-                <a href="#markets" class="px-10 py-4 glass text-xs font-bold uppercase tracking-[0.2em] hover:bg-white/5 transition">View Live Terminal</a>
-            </div>
-        </div>
-    </section>
-
-    <section id="markets" class="py-20 px-6">
-        <div class="max-w-7xl mx-auto glass-premium p-8 rounded-3xl">
-            <div class="flex flex-col md:flex-row justify-between items-center mb-10 border-b border-white/5 pb-6">
-                <div>
-                    <h2 class="heading-font text-2xl font-bold">Execution Terminal</h2>
-                    <p class="text-xs text-gray-500 uppercase tracking-widest mt-1">Live Global Liquidity Feed</p>
-                </div>
-                <div class="flex gap-8 mt-4 md:mt-0">
-                    <div class="text-center">
-                        <p class="text-[10px] text-gray-500 uppercase">Daily Yield</p>
-                        <p class="text-lg font-bold text-green-400">+12.4%</p>
-                    </div>
-                    <div class="text-center">
-                        <p class="text-[10px] text-gray-500 uppercase">Active Trades</p>
-                        <p class="text-lg font-bold">04</p>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                <div class="lg:col-span-2 h-[400px] glass rounded-2xl p-4 relative overflow-hidden">
-                    <div class="absolute top-4 right-4 flex gap-2">
-                        <span class="px-2 py-1 bg-green-500/20 text-green-400 text-[8px] font-bold rounded">LIVE</span>
-                        <span class="px-2 py-1 bg-white/5 text-white text-[8px] font-bold rounded uppercase">XAUUSD H1</span>
-                    </div>
-                    <div class="w-full h-full border-l border-b border-white/10 flex items-end justify-between p-2">
-                        <div class="w-8 bg-[#c5a059]/20 border-t-2 border-[#c5a059]" style="height: 40%"></div>
-                        <div class="w-8 bg-[#c5a059]/20 border-t-2 border-[#c5a059]" style="height: 65%"></div>
-                        <div class="w-8 bg-[#c5a059]/20 border-t-2 border-[#c5a059]" style="height: 55%"></div>
-                        <div class="w-8 bg-green-500/20 border-t-2 border-green-500" style="height: 90%"></div>
-                    </div>
-                </div>
-                
-                <div class="space-y-4">
-                    <div class="p-4 glass rounded-xl flex justify-between items-center">
-                        <span class="text-xs font-bold">SELL EURUSD</span>
-                        <span class="text-xs text-green-400">+$240.50</span>
-                    </div>
-                    <div class="p-4 glass rounded-xl flex justify-between items-center">
-                        <span class="text-xs font-bold">BUY XAUUSD</span>
-                        <span class="text-xs text-green-400">+$1,120.00</span>
-                    </div>
-                    <div class="p-4 glass rounded-xl flex justify-between items-center">
-                        <span class="text-xs font-bold">BUY BTCUSD</span>
-                        <span class="text-xs text-gray-500">PENDING</span>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="plans" class="py-20 px-6">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="heading-font text-4xl font-bold text-center mb-16">System Access Tiers</h2>
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-                <div class="glass p-10 rounded-[40px] hover:border-[#c5a059]/50 transition duration-500">
-                    <p class="text-[10px] uppercase tracking-widest text-[#c5a059] mb-4">Standard Allocation</p>
-                    <h3 class="heading-font text-5xl font-bold mb-10">$300</h3>
-                    <ul class="space-y-4 text-sm text-gray-400 mb-12">
-                        <li><i class="fa-solid fa-check text-[#c5a059] mr-3"></i> 5% – 10% Daily Target</li>
-                        <li><i class="fa-solid fa-check text-[#c5a059] mr-3"></i> 80% – 90% Success Rate</li>
-                        <li><i class="fa-solid fa-check text-[#c5a059] mr-3"></i> 4 Months Integrated Access</li>
-                    </ul>
-                    <button class="w-full py-4 rounded-full border border-white/10 text-xs font-bold uppercase hover:bg-white hover:text-black transition">Deploy System</button>
-                </div>
-
-                <div class="glass-premium p-10 rounded-[40px] border-[#c5a059] relative scale-105 shadow-2xl shadow-[#c5a059]/10">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-[#c5a059] text-black text-[9px] px-6 py-1 font-black rounded-full">MOST DEPLOYED</div>
-                    <p class="text-[10px] uppercase tracking-widest text-[#c5a059] mb-4">Professional Tier</p>
-                    <h3 class="heading-font text-5xl font-bold mb-10">$700</h3>
-                    <ul class="space-y-4 text-sm text-gray-200 mb-12">
-                        <li><i class="fa-solid fa-check text-[#c5a059] mr-3"></i> 10% – 15% Daily Target</li>
-                        <li><i class="fa-solid fa-check text-[#c5a059] mr-3"></i> 85% – 95% Success Rate</li>
-                        <li><i class="fa-solid fa-check text-[#c5a059] mr-3"></i> 8 Months Integrated Access</li>
-                    </ul>
-                    <button class="w-full py-4 rounded-full btn-gold text-xs font-bold uppercase">Escalate to Pro</button>
-                </div>
-
-                <div class="glass p-10 rounded-[40px] hover:border-[#c5a059]/50 transition duration-500">
-                    <p class="text-[10px] uppercase tracking-widest text-[#c5a059] mb-4">Institutional VIP</p>
-                    <h3 class="heading-font text-5xl font-bold mb-10">$2000</h3>
-                    <ul class="space-y-4 text-sm text-gray-400 mb-12">
-                        <li><i class="fa-solid fa-check text-[#c5a059] mr-3"></i> 15% – 20% Daily Target</li>
-                        <li><i class="fa-solid fa-check text-[#c5a059] mr-3"></i> 95%+ Precision Level</li>
-                        <li><i class="fa-solid fa-check text-[#c5a059] mr-3"></i> 1 Year Full System Suite</li>
-                    </ul>
-                    <button class="w-full py-4 rounded-full border border-[#c5a059] text-[#c5a059] text-xs font-bold uppercase hover:bg-[#c5a059] hover:text-black transition">Institutional Onboarding</button>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="faq" class="py-20 px-6">
-        <div class="max-w-3xl mx-auto">
-            <h2 class="heading-font text-3xl font-bold mb-12 text-center">Institutional Intelligence</h2>
-            <div class="space-y-4">
-                <details class="glass p-6 rounded-2xl group cursor-pointer" open>
-                    <summary class="flex justify-between items-center font-bold text-sm uppercase tracking-widest list-none">
-                        How is the risk managed?
-                        <i class="fa-solid fa-plus group-open:rotate-45 transition"></i>
-                    </summary>
-                    <p class="mt-4 text-gray-500 text-sm leading-relaxed">Our systems utilize hard-coded Drawdown Protection (DDP). Each trade has a fixed 0.5% - 1% risk parameter with automated trailing stop-losses to secure capital during volatility.</p>
-                </details>
-                <details class="glass p-6 rounded-2xl group cursor-pointer">
-                    <summary class="flex justify-between items-center font-bold text-sm uppercase tracking-widest list-none">
-                        Which broker is supported?
-                        <i class="fa-solid fa-plus group-open:rotate-45 transition"></i>
-                    </summary>
-                    <p class="mt-4 text-gray-500 text-sm leading-relaxed">The algorithm is broker-agnostic. It works seamlessly via MT4/MT5 bridges with any ECN or STP broker providing low-spread liquidity.</p>
-                </details>
-            </div>
-        </div>
-    </section>
-
-    <section class="py-20 px-6 border-t border-white/5">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-20">
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-24 px-8 visible">
+        <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
             <div>
-                <h2 class="heading-font text-4xl font-bold mb-6">Let's Secure <br> Your Growth.</h2>
-                <p class="text-gray-500 mb-10">Connect with our strategic analysts for a tailored system deployment plan.</p>
-                <div class="flex gap-6">
-                    <a href="https://wa.me/919922502488" class="text-2xl hover:text-[#c5a059] transition"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="#" class="text-2xl hover:text-[#c5a059] transition"><i class="fa-brands fa-telegram"></i></a>
-                    <a href="mailto:support@fxstreetcode.com" class="text-2xl hover:text-[#c5a059] transition"><i class="fa-solid fa-envelope"></i></a>
+                <div class="inline-block px-4 py-1 rounded-full border border-[#c5a059]/30 text-[#c5a059] text-[10px] font-bold tracking-widest mb-6">INSTITUTIONAL GRADE V3.0</div>
+                <h1 class="text-6xl md:text-8xl font-black leading-none mb-8">Trade the <br><span class="gold-text italic">Future.</span></h1>
+                <p class="text-gray-400 text-lg mb-10 max-w-lg leading-relaxed font-light">Precision-engineered algorithmic systems for global markets. We don't predict—we execute.</p>
+                <div class="flex gap-4">
+                    <button class="btn-master">Get Started</button>
+                    <button class="px-8 py-4 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest hover:bg-white/5">Watch Demo</button>
+                </div>
+                <div class="mt-12 flex gap-10 items-center border-t border-white/5 pt-10">
+                    <div><p class="text-2xl font-bold">95.4%</p><p class="text-[9px] text-gray-600 uppercase">Avg. Accuracy</p></div>
+                    <div><p class="text-2xl font-bold">$4.2M+</p><p class="text-[9px] text-gray-600 uppercase">AUM Managed</p></div>
+                    <div><p class="text-2xl font-bold">24/7</p><p class="text-[9px] text-gray-600 uppercase">System Uptime</p></div>
                 </div>
             </div>
-            <form class="space-y-4">
-                <input type="text" placeholder="Full Name" class="w-full p-4 glass rounded-xl focus:outline-none focus:border-[#c5a059] transition">
-                <input type="email" placeholder="Email Address" class="w-full p-4 glass rounded-xl focus:outline-none focus:border-[#c5a059] transition">
-                <textarea placeholder="Investment Goal" class="w-full p-4 glass rounded-xl h-32 focus:outline-none focus:border-[#c5a059] transition"></textarea>
-                <button type="submit" class="w-full py-4 btn-gold font-bold uppercase tracking-widest rounded-xl">Submit Strategy Request</button>
-            </form>
+            <div class="relative">
+                <div class="premium-glass p-4 rounded-3xl rotate-3 shadow-2xl">
+                    <div class="tradingview-widget-container" style="height: 400px;">
+                        <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_762d9&symbol=FX%3AXAUUSD&interval=D&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=Etc%2FUTC" width="100%" height="100%" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 
-    <a href="https://wa.me/919922502488" class="fixed bottom-8 right-8 w-14 h-14 bg-green-500 rounded-full flex items-center justify-center text-2xl shadow-2xl z-[100] hover:scale-110 transition">
+    <section id="terminal" class="py-32 px-8 visible">
+        <div class="max-w-7xl mx-auto">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-16 gap-6">
+                <div>
+                    <h2 class="text-4xl font-bold mb-4">Live Execution Terminal</h2>
+                    <p class="text-gray-500 max-w-md">Our global cloud network monitors thousands of liquidity pools every millisecond.</p>
+                </div>
+                <div class="flex p-1 premium-glass rounded-full">
+                    <button class="px-6 py-2 rounded-full text-[10px] font-bold uppercase active-tab">Forex</button>
+                    <button class="px-6 py-2 rounded-full text-[10px] font-bold uppercase">Crypto</button>
+                    <button class="px-6 py-2 rounded-full text-[10px] font-bold uppercase">Metals</button>
+                </div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div class="premium-glass p-8 rounded-3xl text-center">
+                    <p class="text-[10px] text-gray-600 mb-4 uppercase tracking-widest">XAUUSD / GOLD</p>
+                    <h4 class="text-3xl font-bold text-green-400">2311.66</h4>
+                    <div class="mt-4 text-[10px] bg-green-500/10 text-green-500 py-1 rounded">+1.24%</div>
+                </div>
+                <div class="premium-glass p-8 rounded-3xl text-center">
+                    <p class="text-[10px] text-gray-600 mb-4 uppercase tracking-widest">BTC / BITCOIN</p>
+                    <h4 class="text-3xl font-bold text-red-400">64,281</h4>
+                    <div class="mt-4 text-[10px] bg-red-500/10 text-red-500 py-1 rounded">-0.45%</div>
+                </div>
+                <div class="premium-glass p-8 rounded-3xl text-center">
+                    <p class="text-[10px] text-gray-600 mb-4 uppercase tracking-widest">EURUSD</p>
+                    <h4 class="text-3xl font-bold">1.0842</h4>
+                    <div class="mt-4 text-[10px] bg-white/5 text-gray-400 py-1 rounded">Neutral</div>
+                </div>
+                <div class="premium-glass p-8 rounded-3xl text-center border-[#c5a059]/20">
+                    <p class="text-[10px] text-[#c5a059] mb-4 uppercase tracking-widest">Bot Status</p>
+                    <h4 class="text-2xl font-bold gold-text uppercase">Active</h4>
+                    <div class="mt-4 flex justify-center gap-1">
+                        <div class="w-1 h-4 bg-[#c5a059]"></div>
+                        <div class="w-1 h-6 bg-[#c5a059]"></div>
+                        <div class="w-1 h-3 bg-[#c5a059]"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="plans" class="py-32 px-8 bg-white/5 visible">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="premium-glass p-12 rounded-[3rem] relative overflow-hidden group">
+                <div class="absolute -right-10 -top-10 w-40 h-40 bg-white/5 rounded-full blur-3xl transition group-hover:bg-[#c5a059]/10"></div>
+                <h3 class="text-[10px] font-bold tracking-[0.5em] text-gray-600 mb-10">CORE ACCESS</h3>
+                <h4 class="text-5xl font-black mb-8">$300</h4>
+                <ul class="space-y-6 text-sm text-gray-400 mb-12">
+                    <li><i class="fa-solid fa-circle-check text-[#c5a059] mr-3"></i> 5-10% Daily Return</li>
+                    <li><i class="fa-solid fa-circle-check text-[#c5a059] mr-3"></i> 4 Months Deployment</li>
+                    <li><i class="fa-solid fa-circle-check text-[#c5a059] mr-3"></i> Standard Support</li>
+                </ul>
+                <button class="w-full py-5 rounded-2xl border border-white/10 font-bold text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition">Deploy Core</button>
+            </div>
+
+            <div class="premium-glass p-12 rounded-[3rem] border-[#c5a059]/40 transform scale-105 shadow-2xl bg-gradient-to-br from-gray-900 to-black relative">
+                <div class="absolute top-0 right-12 bg-[#c5a059] text-black px-6 py-2 rounded-b-2xl font-black text-[9px] uppercase tracking-widest">Most Popular</div>
+                <h3 class="text-[10px] font-bold tracking-[0.5em] text-[#c5a059] mb-10">ELITE SCALE</h3>
+                <h4 class="text-5xl font-black mb-8 gold-text">$700</h4>
+                <ul class="space-y-6 text-sm text-gray-200 mb-12">
+                    <li><i class="fa-solid fa-circle-check text-[#c5a059] mr-3"></i> 10-15% Daily Return</li>
+                    <li><i class="fa-solid fa-circle-check text-[#c5a059] mr-3"></i> 8 Months Deployment</li>
+                    <li><i class="fa-solid fa-circle-check text-[#c5a059] mr-3"></i> Priority Cloud Access</li>
+                </ul>
+                <button class="w-full py-5 rounded-2xl btn-master">Access Elite</button>
+            </div>
+
+            <div class="premium-glass p-12 rounded-[3rem]">
+                <h3 class="text-[10px] font-bold tracking-[0.5em] text-gray-600 mb-10">INSTITUTIONAL</h3>
+                <h4 class="text-5xl font-black mb-8">$2000</h4>
+                <ul class="space-y-6 text-sm text-gray-400 mb-12">
+                    <li><i class="fa-solid fa-circle-check text-[#c5a059] mr-3"></i> 15-20% Daily Return</li>
+                    <li><i class="fa-solid fa-circle-check text-[#c5a059] mr-3"></i> 1 Year Full Suite</li>
+                    <li><i class="fa-solid fa-circle-check text-[#c5a059] mr-3"></i> VIP Direct Concierge</li>
+                </ul>
+                <button class="w-full py-5 rounded-2xl border border-[#c5a059]/30 text-[#c5a059] font-bold text-[10px] tracking-widest uppercase hover:bg-[#c5a059] hover:text-black transition">Inquire VIP</button>
+            </div>
+        </div>
+    </section>
+
+    <section class="py-32 px-8 visible">
+        <div class="max-w-4xl mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-20 heading-font">Common Intelligence</h2>
+            <div class="space-y-6">
+                <div class="premium-glass p-8 rounded-3xl cursor-pointer" onclick="this.classList.toggle('bg-white/5')">
+                    <h5 class="font-bold text-sm tracking-widest uppercase mb-4">Is my capital secure?</h5>
+                    <p class="text-sm text-gray-500 leading-relaxed">We utilize institutional risk parameters. The bot never trades more than 1% of your equity per position, and stop-losses are hard-coded via the bridge.</p>
+                </div>
+                <div class="premium-glass p-8 rounded-3xl">
+                    <h5 class="font-bold text-sm tracking-widest uppercase mb-4">Payout Schedule</h5>
+                    <p class="text-sm text-gray-500 leading-relaxed">Profits are available for withdrawal instantly from your chosen broker. Our system only manages the execution, not your funds.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-32 px-8 visible border-t border-white/5">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
+            <div>
+                <h2 class="text-6xl font-black mb-8">Ready to <br><span class="gold-text italic">Scale?</span></h2>
+                <p class="text-gray-500 mb-12 text-lg">Connect with our engineering team or join our Telegram for real-time trade signals and community insights.</p>
+                <div class="flex gap-4">
+                    <a href="https://wa.me/919922502488" class="w-14 h-14 premium-glass rounded-full flex items-center justify-center text-xl hover:text-green-500 transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" class="w-14 h-14 premium-glass rounded-full flex items-center justify-center text-xl hover:text-[#c5a059] transition"><i class="fa-brands fa-telegram"></i></a>
+                </div>
+            </div>
+            <div class="premium-glass p-10 rounded-[3rem]">
+                <form class="space-y-6">
+                    <div class="grid grid-cols-2 gap-6">
+                        <input type="text" placeholder="Name" class="bg-transparent border-b border-white/10 p-4 focus:outline-none focus:border-[#c5a059] text-sm">
+                        <input type="email" placeholder="Email" class="bg-transparent border-b border-white/10 p-4 focus:outline-none focus:border-[#c5a059] text-sm">
+                    </div>
+                    <textarea placeholder="Tell us about your trading experience" class="w-full bg-transparent border-b border-white/10 p-4 focus:outline-none focus:border-[#c5a059] text-sm h-32"></textarea>
+                    <button class="btn-master w-full">Submit Request</button>
+                </form>
+            </div>
+        </div>
+    </section>
+
+    <footer class="py-20 px-8 text-center border-t border-white/5">
+        <div class="mb-10 flex justify-center gap-10 text-gray-600 text-[10px] font-bold tracking-[0.5em] uppercase">
+            <span>Security</span><span>Privacy</span><span>Terms</span>
+        </div>
+        <p class="text-[9px] text-gray-700 leading-relaxed max-w-4xl mx-auto uppercase tracking-tighter">
+            Disclaimer: Trading involves significant risk. Fxstreetcode is a software execution tool and does not guarantee profits. Past performance is not indicative of future results.
+        </p>
+    </footer>
+
+    <a href="https://wa.me/919922502488" class="fixed bottom-10 right-10 w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-3xl shadow-[0_0_30px_rgba(34,197,94,0.4)] z-[200] transition hover:scale-110">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
-    <footer class="py-10 px-6 border-t border-white/5 text-center">
-        <p class="text-[9px] uppercase tracking-[0.5em] text-gray-600">© 2026 FXSTREETCODE GLOBAL • Institutional Trading Systems • High Risk Capital Warning</p>
-    </footer>
-
     <script>
-        // Loader timeout
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                document.getElementById('loader').style.opacity = '0';
-                setTimeout(() => document.getElementById('loader').style.display = 'none', 500);
-            }, 1000);
-        });
+        // Reveal sections on scroll
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('visible');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('section').forEach(section => observer.observe(section));
+
+        function toggleMode() {
+            document.body.classList.toggle('bg-white');
+            document.body.classList.toggle('text-black');
+        }
     </script>
 </body>
 </html>
