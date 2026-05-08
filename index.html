@@ -15,251 +15,286 @@
             scroll-behavior: smooth; overflow-x: hidden;
         }
         
-        /* Floating Golden Bubbles Animation */
-        .bubbles-container {
-            position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none;
-        }
+        /* Floating Golden Bubbles */
+        .bubbles-container { position: fixed; inset: 0; z-index: -1; overflow: hidden; pointer-events: none; }
         .bubble {
             position: absolute; bottom: -100px;
-            background: radial-gradient(circle, rgba(197, 160, 89, 0.15) 0%, transparent 70%);
-            border-radius: 50%; filter: blur(4px);
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.12) 0%, transparent 70%);
+            border-radius: 50%; filter: blur(6px);
             animation: float-up var(--duration) infinite linear;
-            opacity: 0.4;
+            opacity: 0.3;
         }
         @keyframes float-up {
             0% { transform: translateY(0) translateX(0); opacity: 0; }
-            20% { opacity: 0.4; }
+            20% { opacity: 0.3; }
             100% { transform: translateY(-120vh) translateX(var(--drift)); opacity: 0; }
         }
 
-        /* Video/Motion Background Glows */
-        .video-container { position: fixed; inset: 0; z-index: -2; background: radial-gradient(circle at center, #111827 0%, #030712 100%); }
+        /* Background & Glows */
+        .video-container { position: fixed; inset: 0; z-index: -2; background: radial-gradient(circle at 70% 30%, #111827 0%, #030712 100%); }
         .abstract-glow {
             position: absolute; width: 600px; height: 600px;
-            background: radial-gradient(circle, rgba(197, 160, 89, 0.05) 0%, transparent 70%);
-            border-radius: 50%; filter: blur(80px); animation: move 20s infinite alternate;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.04) 0%, transparent 70%);
+            border-radius: 50%; filter: blur(100px); animation: move 25s infinite alternate;
         }
-        @keyframes move { from { transform: translate(-10%, -10%); } to { transform: translate(20%, 20%); } }
+        @keyframes move { from { transform: translate(-15%, -15%); } to { transform: translate(25%, 25%); } }
 
-        /* Glassmorphism */
+        /* Premium Glass & Effects */
         .premium-glass {
-            background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(20px);
-            border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.5s cubic-bezier(0.2, 0.8, 0.2, 1);
+            background: rgba(255, 255, 255, 0.015); backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.05); transition: 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
-        .premium-glass:hover { border-color: var(--gold); transform: translateY(-10px); background: rgba(255, 255, 255, 0.04); }
-
+        .premium-glass:hover { border-color: var(--gold); transform: translateY(-12px); background: rgba(255, 255, 255, 0.03); }
         .gold-text { background: linear-gradient(to right, #F5E3C6, #C5A059, #8A6D3B); -webkit-background-clip: text; -webkit-text-fill-color: transparent; }
         
         .btn-master {
-            background: var(--gold); color: black; font-weight: 800; padding: 1rem 2.5rem; border-radius: 99px; transition: 0.4s;
-            text-transform: uppercase; letter-spacing: 2px; font-size: 10px;
+            background: var(--gold); color: black; font-weight: 800; padding: 1.2rem 3rem; border-radius: 99px; transition: 0.4s;
+            text-transform: uppercase; letter-spacing: 2px; font-size: 11px;
         }
-        .btn-master:hover { box-shadow: 0 0 40px rgba(197, 160, 89, 0.4); transform: scale(1.05); }
+        .btn-master:hover { box-shadow: 0 0 50px rgba(197, 160, 89, 0.45); transform: scale(1.05); }
 
-        section { opacity: 0; transform: translateY(30px); transition: 1s ease-out; }
+        section { opacity: 0; transform: translateY(50px); transition: 1.2s ease-out; margin-bottom: 5rem; }
         section.visible { opacity: 1; transform: translateY(0); }
+
+        /* Progress Bar */
+        .scroll-progress { position: fixed; top: 0; left: 0; height: 3px; background: var(--gold); z-index: 1000; width: 0%; }
     </style>
 </head>
 <body>
 
+    <div class="scroll-progress" id="progressBar"></div>
     <div class="bubbles-container" id="bubbles"></div>
-
     <div class="video-container">
         <div class="abstract-glow"></div>
-        <div class="abstract-glow" style="right: 0; bottom: 0; animation-delay: -5s;"></div>
+        <div class="abstract-glow" style="right: 0; bottom: 0; animation-delay: -7s;"></div>
     </div>
 
-    <nav class="fixed w-full z-[100] px-8 py-4 premium-glass border-b border-white/5 flex justify-between items-center">
+    <nav class="fixed w-full z-[100] px-8 py-5 premium-glass border-b border-white/5 flex justify-between items-center">
         <div class="text-2xl font-black gold-text tracking-tighter">FXSTREETCODE</div>
-        <div class="hidden lg:flex space-x-8 text-[10px] tracking-[0.3em] font-bold text-gray-400 uppercase">
+        <div class="hidden lg:flex space-x-10 text-[10px] tracking-[0.4em] font-bold text-gray-400 uppercase">
             <a href="#hero" class="hover:text-white transition">Home</a>
-            <a href="#terminal" class="hover:text-white transition">Terminal</a>
-            <a href="#plans" class="hover:text-white transition">Equity Plans</a>
-            <a href="#contact" class="hover:text-white transition">Support</a>
+            <a href="#infra" class="hover:text-white transition">Engine</a>
+            <a href="#plans" class="hover:text-white transition">Deployment</a>
+            <a href="#contact" class="hover:text-white transition">Liaison</a>
         </div>
-        <div class="flex items-center gap-4">
-            <button class="text-xs font-bold text-gray-400" onclick="toggleMode()"><i class="fa-solid fa-moon"></i></button>
-            <a href="#" class="btn-master py-3 px-6">Client Login</a>
-        </div>
+        <a href="#" class="btn-master py-3 px-8">Access Terminal</a>
     </nav>
 
-    <section id="hero" class="min-h-screen flex items-center justify-center pt-24 px-8 visible">
-        <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+    <section id="hero" class="min-h-screen flex items-center justify-center pt-32 px-8 visible">
+        <div class="max-w-6xl w-full grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
             <div>
-                <div class="inline-block px-4 py-1 rounded-full border border-[#c5a059]/30 text-[#c5a059] text-[10px] font-bold tracking-widest mb-6 uppercase">INSTITUTIONAL GRADE V3.0</div>
-                <h1 class="text-6xl md:text-8xl font-black leading-none mb-8">Trade the <br><span class="gold-text italic">Future.</span></h1>
-                <p class="text-gray-400 text-lg mb-10 max-w-lg leading-relaxed font-light">Precision-engineered algorithmic systems for global markets. We don't predict—we execute.</p>
-                <div class="flex gap-4">
+                <div class="inline-block px-5 py-1 rounded-full border border-[#c5a059]/30 text-[#c5a059] text-[10px] font-bold tracking-widest mb-8 uppercase">Neural Execution Engine v4.0</div>
+                <h1 class="text-7xl md:text-9xl font-black leading-none mb-10">Beyond <br><span class="gold-text italic">Trading.</span></h1>
+                <p class="text-gray-500 text-xl mb-12 max-w-lg leading-relaxed font-light">Institutional liquidity, zero latency, and algorithmic precision. Designed for the top 1% of market participants.</p>
+                <div class="flex gap-6">
                     <button class="btn-master">Get Started</button>
-                    <button class="px-8 py-4 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest hover:bg-white/5 transition">Watch Demo</button>
+                    <button class="px-10 py-4 rounded-full border border-white/10 text-[10px] font-bold uppercase tracking-widest hover:bg-white/5 transition">System Audit</button>
                 </div>
             </div>
             <div class="relative">
-                <div class="premium-glass p-4 rounded-3xl rotate-3 shadow-2xl">
-                    <div class="tradingview-widget-container" style="height: 400px;">
-                        <iframe src="https://s.tradingview.com/widgetembed/?frameElementId=tradingview_762d9&symbol=FX%3AXAUUSD&interval=D&hidesidetoolbar=1&symboledit=1&saveimage=1&toolbarbg=f1f3f6&studies=%5B%5D&theme=dark&style=1&timezone=Etc%2FUTC" width="100%" height="100%" frameborder="0" allowtransparency="true" scrolling="no"></iframe>
-                    </div>
+                <div class="premium-glass p-5 rounded-[2.5rem] rotate-2 shadow-2xl">
+                    <iframe src="https://s.tradingview.com/widgetembed/?symbol=FX%3AXAUUSD&interval=D&theme=dark" width="100%" height="450px" frameborder="0" allowtransparency="true"></iframe>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="terminal" class="py-32 px-8 visible">
-        <div class="max-w-7xl mx-auto">
-            <h2 class="text-4xl font-bold mb-16 text-center">Live Execution Terminal</h2>
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-6">
-                <div class="premium-glass p-8 rounded-3xl text-center">
-                    <p class="text-[10px] text-gray-600 mb-4 uppercase tracking-widest">XAUUSD / GOLD</p>
-                    <h4 class="text-3xl font-bold text-green-400">2311.66</h4>
-                    <div class="mt-4 text-[10px] bg-green-500/10 text-green-500 py-1 rounded">+1.24%</div>
+    <section id="infra" class="py-32 px-8">
+        <div class="max-w-7xl mx-auto text-center">
+            <h2 class="text-5xl font-black mb-20 uppercase tracking-tighter">Global <span class="gold-text">Footprint</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-12">
+                <div class="p-10 premium-glass rounded-[3rem]">
+                    <i class="fa-solid fa-server text-4xl mb-8 text-[#c5a059]"></i>
+                    <h4 class="text-xl font-bold mb-4 uppercase">NY4 Servers</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Direct cross-connects to Equinix New York for sub-millisecond execution speeds.</p>
                 </div>
-                <div class="premium-glass p-8 rounded-3xl text-center">
-                    <p class="text-[10px] text-gray-600 mb-4 uppercase tracking-widest">BTC / BITCOIN</p>
-                    <h4 class="text-3xl font-bold text-red-400">64,281</h4>
-                    <div class="mt-4 text-[10px] bg-red-500/10 text-red-500 py-1 rounded">-0.45%</div>
+                <div class="p-10 premium-glass rounded-[3rem] border-[#c5a059]/20">
+                    <i class="fa-solid fa-microchip text-4xl mb-8 text-[#c5a059]"></i>
+                    <h4 class="text-xl font-bold mb-4 uppercase">Quant Logic</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Our algorithms filter market noise using HFT (High-Frequency Trading) logic protocols.</p>
                 </div>
-                <div class="premium-glass p-8 rounded-3xl text-center border-[#c5a059]/20">
-                    <p class="text-[10px] text-[#c5a059] mb-4 uppercase tracking-widest">Bot Status</p>
-                    <h4 class="text-2xl font-bold gold-text uppercase">Active</h4>
-                    <div class="mt-4 flex justify-center gap-1"><div class="w-1 h-6 bg-[#c5a059]"></div><div class="w-1 h-4 bg-[#c5a059]"></div><div class="w-1 h-5 bg-[#c5a059]"></div></div>
-                </div>
-                <div class="premium-glass p-8 rounded-3xl text-center">
-                    <p class="text-[10px] text-gray-600 mb-4 uppercase tracking-widest">Daily Yield</p>
-                    <h4 class="text-3xl font-bold">+12.4%</h4>
-                    <div class="mt-4 text-[10px] bg-white/5 text-gray-400 py-1 rounded">Target Achieved</div>
+                <div class="p-10 premium-glass rounded-[3rem]">
+                    <i class="fa-solid fa-shield-halved text-4xl mb-8 text-[#c5a059]"></i>
+                    <h4 class="text-xl font-bold mb-4 uppercase">Risk Guard</h4>
+                    <p class="text-gray-500 text-sm leading-relaxed">Automated equity protection and drawdown management built into every trade.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="plans" class="py-32 px-8 bg-white/5 visible">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-10">
+    <section id="terminal" class="py-32 px-8">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8">
+            <div class="premium-glass p-10 rounded-[2rem] text-center">
+                <p class="text-[10px] text-gray-600 mb-4 uppercase tracking-[0.3em]">XAUUSD / GOLD</p>
+                <h4 class="text-4xl font-bold text-green-400 tabular-nums">2311.66</h4>
+                <div class="mt-4 text-[10px] bg-green-500/10 text-green-500 py-1 px-4 rounded-full inline-block">+1.24%</div>
+            </div>
+            <div class="premium-glass p-10 rounded-[2rem] text-center border-[#c5a059]/30">
+                <p class="text-[10px] text-[#c5a059] mb-4 uppercase tracking-[0.3em]">Bot Heartbeat</p>
+                <h4 class="text-3xl font-bold gold-text">OPTIMAL</h4>
+                <div class="mt-4 flex justify-center gap-2"><div class="w-1 h-6 bg-[#c5a059] animate-pulse"></div><div class="w-1 h-4 bg-[#c5a059] animate-pulse"></div><div class="w-1 h-8 bg-[#c5a059] animate-pulse"></div></div>
+            </div>
+            <div class="premium-glass p-10 rounded-[2rem] text-center">
+                <p class="text-[10px] text-gray-600 mb-4 uppercase tracking-[0.3em]">BTC / BITCOIN</p>
+                <h4 class="text-4xl font-bold text-red-400 tabular-nums">64,281</h4>
+                <div class="mt-4 text-[10px] bg-red-500/10 text-red-500 py-1 px-4 rounded-full inline-block">-0.45%</div>
+            </div>
+            <div class="premium-glass p-10 rounded-[2rem] text-center">
+                <p class="text-[10px] text-gray-600 mb-4 uppercase tracking-[0.3em]">Total Volume</p>
+                <h4 class="text-4xl font-bold tabular-nums">1.2B</h4>
+                <div class="mt-4 text-[10px] bg-white/5 text-gray-400 py-1 px-4 rounded-full inline-block">24h Flow</div>
+            </div>
+        </div>
+    </section>
+
+    <section id="plans" class="py-32 px-8 bg-white/[0.02]">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12">
             
-            <div class="premium-glass p-12 rounded-[3rem] relative overflow-hidden group">
-                <h3 class="text-[10px] font-bold tracking-[0.5em] text-gray-600 mb-10 uppercase">CORE ACCESS</h3>
-                <h4 class="text-5xl font-black mb-8">$300</h4>
-                <div class="space-y-6 mb-10">
-                    <div class="border-b border-white/5 pb-4">
-                        <p class="text-[10px] text-gray-500 uppercase mb-1">Return Potential</p>
-                        <p class="text-lg font-bold">5% – 10% Daily</p>
+            <div class="premium-glass p-14 rounded-[4rem]">
+                <h3 class="text-[10px] font-bold tracking-[0.6em] text-gray-600 mb-10 uppercase">CORE</h3>
+                <h4 class="text-6xl font-black mb-10">$300</h4>
+                <div class="space-y-8 mb-12">
+                    <div class="flex justify-between items-center border-b border-white/5 pb-4">
+                        <span class="text-[10px] text-gray-500 uppercase">Daily Return</span>
+                        <span class="font-bold">5% – 10%</span>
                     </div>
-                    <div class="border-b border-white/5 pb-4">
-                        <p class="text-[10px] text-gray-500 uppercase mb-1">Accuracy Level</p>
-                        <p class="text-lg font-bold text-[#c5a059]">80% – 90% Precision</p>
+                    <div class="flex justify-between items-center border-b border-white/5 pb-4">
+                        <span class="text-[10px] text-gray-500 uppercase">Accuracy</span>
+                        <span class="font-bold text-[#c5a059]">90%</span>
                     </div>
-                    <div>
-                        <p class="text-[10px] text-gray-500 uppercase mb-1">Segments Covered</p>
-                        <p class="text-sm">Gold & Major USD Pairs</p>
+                    <div class="flex justify-between items-center border-b border-white/5 pb-4">
+                        <span class="text-[10px] text-gray-500 uppercase">Validity</span>
+                        <span class="font-bold">4 MONTHS</span>
                     </div>
+                    <p class="text-[10px] text-gray-600 italic">Gold & Major USD Pairs only</p>
                 </div>
-                <button class="w-full py-5 rounded-2xl border border-white/10 font-bold text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition">Deploy Core</button>
+                <button class="w-full py-5 rounded-3xl border border-white/10 font-bold text-[10px] tracking-[0.3em] uppercase hover:bg-white hover:text-black transition">Deploy System</button>
             </div>
 
-            <div class="premium-glass p-12 rounded-[3rem] border-[#c5a059]/40 transform scale-105 shadow-2xl bg-gradient-to-br from-gray-900 to-black relative">
-                <div class="absolute top-0 right-12 bg-[#c5a059] text-black px-6 py-2 rounded-b-2xl font-black text-[9px] uppercase tracking-widest">Recommended</div>
-                <h3 class="text-[10px] font-bold tracking-[0.5em] text-[#c5a059] mb-10 uppercase">ELITE SCALE</h3>
-                <h4 class="text-5xl font-black mb-8 gold-text">$700</h4>
-                <div class="space-y-6 mb-10">
-                    <div class="border-b border-white/5 pb-4">
-                        <p class="text-[10px] text-gray-400 uppercase mb-1">Return Potential</p>
-                        <p class="text-lg font-bold">10% – 15% Daily</p>
+            <div class="premium-glass p-14 rounded-[4rem] border-[#c5a059]/40 transform scale-110 shadow-2xl bg-black/40 z-10">
+                <div class="absolute top-0 right-14 bg-[#c5a059] text-black px-8 py-2 rounded-b-3xl font-black text-[10px] uppercase tracking-widest">Premium Choice</div>
+                <h3 class="text-[10px] font-bold tracking-[0.6em] text-[#c5a059] mb-10 uppercase">ELITE</h3>
+                <h4 class="text-6xl font-black mb-10 gold-text">$700</h4>
+                <div class="space-y-8 mb-12">
+                    <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                        <span class="text-[10px] text-gray-400 uppercase">Daily Return</span>
+                        <span class="font-bold">10% – 15%</span>
                     </div>
-                    <div class="border-b border-white/5 pb-4">
-                        <p class="text-[10px] text-gray-400 uppercase mb-1">Accuracy Level</p>
-                        <p class="text-lg font-bold text-[#c5a059]">85% – 95% Precision</p>
+                    <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                        <span class="text-[10px] text-gray-400 uppercase">Accuracy</span>
+                        <span class="font-bold text-[#c5a059]">95%</span>
                     </div>
-                    <div>
-                        <p class="text-[10px] text-gray-400 uppercase mb-1">Segments Covered</p>
-                        <p class="text-sm">Gold, BTC & Major Forex</p>
+                    <div class="flex justify-between items-center border-b border-white/10 pb-4">
+                        <span class="text-[10px] text-gray-400 uppercase">Validity</span>
+                        <span class="font-bold">8 MONTHS</span>
                     </div>
+                    <p class="text-[10px] text-[#c5a059] font-bold">Gold, BTC & Forex Suite</p>
                 </div>
-                <button class="w-full py-5 rounded-2xl btn-master">Access Elite</button>
+                <button class="w-full py-5 rounded-3xl btn-master">Elite Deployment</button>
             </div>
 
-            <div class="premium-glass p-12 rounded-[3rem]">
-                <h3 class="text-[10px] font-bold tracking-[0.5em] text-gray-600 mb-10 uppercase">INSTITUTIONAL</h3>
-                <h4 class="text-5xl font-black mb-8">$2000</h4>
-                <div class="space-y-6 mb-10">
-                    <div class="border-b border-white/5 pb-4">
-                        <p class="text-[10px] text-gray-500 uppercase mb-1">Return Potential</p>
-                        <p class="text-lg font-bold">15% – 20% Daily</p>
+            <div class="premium-glass p-14 rounded-[4rem]">
+                <h3 class="text-[10px] font-bold tracking-[0.6em] text-gray-600 mb-10 uppercase">INSTITUTIONAL</h3>
+                <h4 class="text-6xl font-black mb-10">$2000</h4>
+                <div class="space-y-8 mb-12">
+                    <div class="flex justify-between items-center border-b border-white/5 pb-4">
+                        <span class="text-[10px] text-gray-500 uppercase">Daily Return</span>
+                        <span class="font-bold">15% – 20%</span>
                     </div>
-                    <div class="border-b border-white/5 pb-4">
-                        <p class="text-[10px] text-gray-500 uppercase mb-1">Accuracy Level</p>
-                        <p class="text-lg font-bold text-[#c5a059]">95%+ Elite Precision</p>
+                    <div class="flex justify-between items-center border-b border-white/5 pb-4">
+                        <span class="text-[10px] text-gray-500 uppercase">Accuracy</span>
+                        <span class="font-bold text-[#c5a059]">98%+</span>
                     </div>
-                    <div>
-                        <p class="text-[10px] text-gray-500 uppercase mb-1">Segments Covered</p>
-                        <p class="text-sm">All Assets (Crypto, Indices, Metals)</p>
+                    <div class="flex justify-between items-center border-b border-white/5 pb-4">
+                        <span class="text-[10px] text-gray-500 uppercase">Validity</span>
+                        <span class="font-bold">12 MONTHS</span>
                     </div>
+                    <p class="text-[10px] text-gray-600 italic">Full Cross-Asset Access</p>
                 </div>
-                <button class="w-full py-5 rounded-2xl border border-[#c5a059]/30 text-[#c5a059] font-bold text-[10px] tracking-widest uppercase hover:bg-[#c5a059] hover:text-black transition">Inquire VIP</button>
+                <button class="w-full py-5 rounded-3xl border border-[#c5a059]/40 text-[#c5a059] font-bold text-[10px] tracking-[0.3em] uppercase hover:bg-[#c5a059] hover:text-black transition">Vip Liaison</button>
             </div>
 
         </div>
     </section>
 
-    <section id="contact" class="py-32 px-8 visible border-t border-white/5">
-        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-20">
+    <section class="py-32 px-8">
+        <div class="max-w-6xl mx-auto premium-glass p-20 rounded-[4rem] text-center relative overflow-hidden">
+            <div class="absolute inset-0 opacity-10" style="background-image: url('https://www.transparenttextures.com/patterns/carbon-fibre.png');"></div>
+            <h2 class="text-4xl font-bold mb-8 uppercase">Neural Grid Active</h2>
+            <p class="text-gray-500 max-w-2xl mx-auto mb-16">Our servers are distributed across London (LD4), Tokyo (TY3), and New York (NY4) to capture price inefficiencies before they reach the retail market.</p>
+            <div class="flex flex-wrap justify-center gap-12">
+                <div class="text-center"><p class="text-3xl font-black">0.02ms</p><p class="text-[9px] text-gray-600 uppercase mt-2">Latency</p></div>
+                <div class="text-center"><div class="w-[1px] h-12 bg-white/10"></div></div>
+                <div class="text-center"><p class="text-3xl font-black">99.9%</p><p class="text-[9px] text-gray-600 uppercase mt-2">Uptime</p></div>
+                <div class="text-center"><div class="w-[1px] h-12 bg-white/10"></div></div>
+                <div class="text-center"><p class="text-3xl font-black">256-Bit</p><p class="text-[9px] text-gray-600 uppercase mt-2">Encryption</p></div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact" class="py-32 px-8">
+        <div class="max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-2 gap-32">
             <div>
-                <h2 class="text-6xl font-black mb-8 leading-tight">Ready to <br><span class="gold-text italic">Scale Up?</span></h2>
-                <p class="text-gray-500 mb-12 text-lg">Connect with our support team or join our community for institutional insights.</p>
-                <div class="flex gap-4">
-                    <a href="https://wa.me/919922502488" class="w-14 h-14 premium-glass rounded-full flex items-center justify-center text-xl hover:text-green-500 transition"><i class="fa-brands fa-whatsapp"></i></a>
-                    <a href="#" class="w-14 h-14 premium-glass rounded-full flex items-center justify-center text-xl hover:text-[#c5a059] transition"><i class="fa-brands fa-telegram"></i></a>
+                <h2 class="text-7xl font-black mb-10 leading-none uppercase">Begin Your <br><span class="gold-text italic">Legacy.</span></h2>
+                <p class="text-gray-500 mb-16 text-xl font-light">Direct engineering support available via WhatsApp. Private consultations for institutional capital above $50k.</p>
+                <div class="flex gap-6">
+                    <a href="https://wa.me/919922502488" class="w-16 h-16 premium-glass rounded-full flex items-center justify-center text-2xl hover:text-green-500 transition"><i class="fa-brands fa-whatsapp"></i></a>
+                    <a href="#" class="w-16 h-16 premium-glass rounded-full flex items-center justify-center text-2xl hover:text-sky-500 transition"><i class="fa-brands fa-telegram"></i></a>
                 </div>
             </div>
-            <div class="premium-glass p-10 rounded-[3rem]">
-                <form class="space-y-6">
-                    <div class="grid grid-cols-2 gap-6">
-                        <input type="text" placeholder="Full Name" class="bg-transparent border-b border-white/10 p-4 focus:outline-none focus:border-[#c5a059] text-sm">
-                        <input type="email" placeholder="Email Address" class="bg-transparent border-b border-white/10 p-4 focus:outline-none focus:border-[#c5a059] text-sm">
+            <div class="premium-glass p-12 rounded-[4rem] border-white/10 shadow-2xl">
+                <form class="space-y-8">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                        <input type="text" placeholder="Identity Name" class="bg-transparent border-b border-white/10 p-5 focus:outline-none focus:border-[#c5a059] text-sm uppercase font-bold tracking-widest">
+                        <input type="email" placeholder="Secure Email" class="bg-transparent border-b border-white/10 p-5 focus:outline-none focus:border-[#c5a059] text-sm uppercase font-bold tracking-widest">
                     </div>
-                    <textarea placeholder="Your Investment Goal" class="w-full bg-transparent border-b border-white/10 p-4 focus:outline-none focus:border-[#c5a059] text-sm h-32"></textarea>
-                    <button class="btn-master w-full">Request System Access</button>
+                    <textarea placeholder="Portfolio Summary / Goals" class="w-full bg-transparent border-b border-white/10 p-5 focus:outline-none focus:border-[#c5a059] text-sm uppercase font-bold tracking-widest h-32"></textarea>
+                    <button class="btn-master w-full">Apply for Access</button>
                 </form>
             </div>
         </div>
     </section>
 
-    <footer class="py-20 px-8 text-center border-t border-white/5">
-        <p class="text-[9px] text-gray-700 uppercase tracking-widest mb-4">© 2026 FXSTREETCODE GLOBAL • INSTITUTIONAL TRADING SYSTEMS</p>
-        <p class="text-[8px] text-gray-800 max-w-4xl mx-auto leading-relaxed uppercase">Disclaimer: Trading involves risk. Capital at risk. Software for educational and execution purposes only.</p>
+    <footer class="py-32 px-8 text-center border-t border-white/5 bg-black/50">
+        <div class="mb-16 flex justify-center gap-12 text-[10px] font-bold tracking-[0.8em] text-gray-700 uppercase">
+            <span>Precision</span><span>Discipline</span><span>Success</span>
+        </div>
+        <p class="text-[9px] text-gray-700 uppercase tracking-[0.2em] mb-4">© 2026 FXSTREETCODE GLOBAL • PRIVATE QUANTITATIVE ACCESS</p>
+        <p class="text-[8px] text-gray-800 max-w-5xl mx-auto leading-relaxed uppercase">High-risk financial instrument warning: Derivative trading involves substantial risk of loss. Fxstreetcode is a software licensing firm and does not provide financial advisory services.</p>
     </footer>
 
-    <a href="https://wa.me/919922502488" class="fixed bottom-10 right-10 w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-3xl shadow-[0_0_30px_rgba(34,197,94,0.4)] z-[200] transition hover:scale-110">
+    <a href="https://wa.me/919922502488" class="fixed bottom-12 right-12 w-16 h-16 bg-green-500 text-white rounded-full flex items-center justify-center text-3xl shadow-[0_0_40px_rgba(34,197,94,0.4)] z-[200] transition hover:scale-125">
         <i class="fa-brands fa-whatsapp"></i>
     </a>
 
     <script>
-        // Bubble Generator
+        // Progress Bar logic
+        window.onscroll = function() {
+            let winScroll = document.body.scrollTop || document.documentElement.scrollTop;
+            let height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+            let scrolled = (winScroll / height) * 100;
+            document.getElementById("progressBar").style.width = scrolled + "%";
+        };
+
+        // Enhanced Bubble Generator
         function createBubbles() {
             const container = document.getElementById('bubbles');
-            const count = 30; // Number of bubbles
-            
-            for (let i = 0; i < count; i++) {
+            for (let i = 0; i < 40; i++) {
                 const bubble = document.createElement('div');
                 bubble.className = 'bubble';
-                
-                const size = Math.random() * 80 + 20; // 20px to 100px
-                const left = Math.random() * 100; // 0% to 100%
-                const duration = Math.random() * 15 + 10; // 10s to 25s
-                const delay = Math.random() * 20; // up to 20s delay
-                const drift = (Math.random() - 0.5) * 200; // random side drift
-
-                bubble.style.width = `${size}px`;
-                bubble.style.height = `${size}px`;
-                bubble.style.left = `${left}%`;
-                bubble.style.setProperty('--duration', `${duration}s`);
-                bubble.style.setProperty('--drift', `${drift}px`);
-                bubble.style.animationDelay = `-${delay}s`;
-
+                const size = Math.random() * 90 + 30;
+                bubble.style.width = size + 'px';
+                bubble.style.height = size + 'px';
+                bubble.style.left = Math.random() * 100 + '%';
+                bubble.style.setProperty('--duration', (Math.random() * 12 + 8) + 's');
+                bubble.style.setProperty('--drift', ((Math.random() - 0.5) * 300) + 'px');
+                bubble.style.animationDelay = '-' + (Math.random() * 20) + 's';
                 container.appendChild(bubble);
             }
         }
         createBubbles();
 
-        // Reveal animations
+        // Smooth reveal on scroll
         const observer = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
                 if (entry.isIntersecting) entry.target.classList.add('visible');
@@ -267,11 +302,6 @@
         }, { threshold: 0.1 });
 
         document.querySelectorAll('section').forEach(section => observer.observe(section));
-
-        function toggleMode() {
-            document.body.classList.toggle('bg-white');
-            document.body.classList.toggle('text-black');
-        }
     </script>
 </body>
 </html>
